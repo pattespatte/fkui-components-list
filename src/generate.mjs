@@ -121,9 +121,10 @@ import { FButton } from "@fkui/vue"
 <script setup>
 import { ref } from "vue"
 import { FCalendar } from "@fkui/vue"
-const date = ref(new Date(2025, 0, 15))
-const minDate = ref(new Date(2025, 0, 1))
-const maxDate = ref(new Date(2025, 11, 31))
+import { FDate } from "@fkui/date"
+const date = ref(FDate.fromIso("2025-01-15"))
+const minDate = ref(FDate.fromIso("2025-01-01"))
+const maxDate = ref(FDate.fromIso("2025-12-31"))
 <\/script>`,
   FCard: `<template>
   <div style="padding:2rem;max-width:600px">
@@ -322,6 +323,8 @@ function makeUrl(template) {
       imports: {
         "vue": "https://play.vuejs.org/vue.runtime.esm-browser.js",
         "@fkui/vue": `https://esm.sh/@fkui/vue@${FKUI_VERSION}?external=vue`,
+        "@fkui/date": `https://esm.sh/@fkui/date@${FKUI_VERSION}?external=vue`,
+        "@fkui/logic": `https://esm.sh/@fkui/logic@${FKUI_VERSION}?external=vue`,
       },
     }),
   });
