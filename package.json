@@ -1,0 +1,18 @@
+{
+  "name": "fkui-components-list",
+  "version": "1.0.0",
+  "description": "Generates an HTML page listing all FKUI components with breakpoint counts and Vue Playground links.",
+  "scripts": {
+    "generate": "node src/generate.mjs",
+    "build": "npm run generate"
+  },
+  "type": "module",
+  "keywords": ["fkui", "design-system", "components"],
+  "author": "Patrik Wästlund",
+  "license": "MIT",
+  "dependencies": {
+    "@fkui/vue": "^6.47.0",
+    "@fkui/design": "^6.47.0",
+    "lz-string": "^1.5.0"
+  }
+}

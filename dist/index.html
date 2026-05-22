@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FKUI Components — @fkui/vue@6.47.0</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fkui/design@6.47.0/dist/ds-css-all.css">
+  <style>
+    body { font-family: inherit; margin: 0; padding: 2rem; background: #f5f5f5; }
+    h1 { margin-top: 0; }
+    .meta { color: #666; margin-bottom: 2rem; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { padding: 0.5rem 1rem; text-align: left; border-bottom: 1px solid #e0e0e0; }
+    th { background: #fafafa; font-weight: 600; position: sticky; top: 0; }
+    td:nth-child(4) { text-align: center; }
+    td:nth-child(5) { text-align: center; }
+    code { background: #f0f0f0; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    strong { color: #d40000; }
+    small { color: #888; }
+    .stats { display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .stat { background: white; padding: 1rem 1.5rem; border-radius: 4px; }
+    .stat-number { font-size: 2rem; font-weight: 700; }
+    .stat-label { color: #666; font-size: 0.85rem; }
+    @media (max-width: 639px) {
+      body { padding: 1rem; }
+      th, td { padding: 0.3rem 0.5rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+  <h1>FKUI Components</h1>
+  <p class="meta">Generated from <code>@fkui/vue@6.47.0</code> on 2026-05-22</p>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">54</div>
+      <div class="stat-label">Vue components</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">9</div>
+      <div class="stat-label">SCSS-only components</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">12</div>
+      <div class="stat-label">With breakpoints</div>
+    </div>
+  </div>
+
+  <h2>Vue Components</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Component</th>
+        <th>SCSS</th>
+        <th>Breakpoints</th>
+        <th>Playground</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><code>FBadge</code></td>
+        <td>badge</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQBCgkYioB6OTXSbGsOXux4ipSuhYBjSQwiZWiTPAhyGeAPaSHwKirUaAL5UAGaSHjhUfAACIQDW8AyaCIh8FprWtvYkIAA0IO4QXpgAtDiEMABWLB4UqCDAfIXFLHwojSCxCUkpbXwAFpiYECwompqILDjQLP2aXYnJSNEAbNAALADs0AAMfLkx8Yt0kwwiFH0gg8Oj41Z0FNDVJ-hMktAUTpoUEDjzR0kTiwzhRVhttjt9Aw2PoWCUrCw4YR8PhoAjWiBAoFMUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><code>FButton</code></td>
+        <td>button</td>
+        <td><strong>12</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuANyMWBQuxQAzLgA8ZIwhBQBGaThlrE6gLQB3STpRWdfctRq0AYgCF4mTAHsKJAAqSDDgAJ5LoAPTunj5+lM6uHl6+VLCEQYQUmLwgLIgAxr506ewOAMqIANbwFHRhkdHJcU406I2xqekMmdl82JKY3ZKlICQAKogDDPVRSbGOCW1zKSwMAF48fCw4hPj45Tt7DcvNrRGMsI6R2HhEpJToLPlBEJisiJjwEI7BEN4DVGAVHaKQAvlQVJJvDgqHwAAIqaoMCIIRB8B4RJ4vTAkEAAGhAv3+mDMOxgACsWL5UCBgHwiQMWHwUHSQAikSikMy+AALLwQFgoCIRRDbaAsHkRdnwZGouEANmgABYAOzQAAMfDx8MRMvOooYIgo3JAfMwAqFEXydAo0EpdEQ+CYkmgFA+EQoEBwUt1yIdqyNCuVavV5wYbHOLDM+RYUd2+GgMaZIFBoJTQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><code>FCalendar</code></td>
+        <td>calendar-day</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDChLhTqFJVAPRya6HY1hzD2PEVKV0LAMaSGETK0SZ4EOQzwB7Sc+BUKmqIGlpUAL5UAGaS3jhUfAACUQDW8Aw6CIh81jp2Dk4kIAA0IF4QvpgAtDiEMABWLN4UqCDAfOWVLHwo7SDJaRlZPXwAFpiYECwoOjqILDjQLKM6A+mZSIkAbNAALADs0AAMfMVJqet08wwiFCMg45PTs7Z0FNCNV-hMktAUrjoKBAcKsLhkriwbhRtntDkcjAw2EYWFVbCwUWp8NA0d0QOFwnigA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><code>FCard</code></td>
+        <td>card</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuANw5CADwC0AdwZ1MACxQA2AAx6ICvuWo1aAMQDChSXSqbEghqKWZCI3iE3iTWXATEiFQAxI6CiJIkAErwAEaSDADW6AD02HhEpP6ZQaF0iABmhPD4mCQAkhQUiJoAp-j4aRmB2anWtnSmNGmMsKbNAVmIAywAxokQmKyImPAQpgx4APaS08BUHXZUAL5UhZLLOFR8AAKFSfAMqQiIfJRp45PlIAA0IEsQq5hK8jAAVixlhRUCBgHxPt8WHwUOCQOdLtdbjC+JpMJgICwUKlUogWDhoCxNKkEVcbkhTjpoAAWADs0D0fFeZwuZIKLAYIgoKO86Mx2NSYzoFGggIK+CYkmgNUwqQoEBwJNZ13ZnIolJp9L0qUYbB1LCUYxYBsIjWgRuhIB2OytQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><code>FCheckboxField</code></td>
+        <td>checkbox</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPiXQAxAMIALRAGMA1gCMA9gA95DRPjpVYAWhw66x3iFh8qKWIXxI7mSUlkBpSexYWL0xCdAB6JVVNXQMjEzkwxlhyCnDsPCJSSnQWNUkGCExWREx4CBSGPB1JIuAqaQAzKgBfKgbJHRwqPgREPkpKiGraqkj1bX1DY1NW9s7ukAABBo14BjDe-oo1HQo2MypuesQGgAoG1xZEAEpssNz8wpIQABoQQeHLQhgAKxZd1AgYB8D41Fh8FDApYrNYbbyoPjKTCYCAsFBhMKIFg4aAsZRhZarda9RYANmgABYAOzQAAMfBefEJsJsLAYIgoEMRyNR6LCajoFGgfxs+CYkmgFBKYQoEBwBJh61Z7IoZMpNNpiQYbESLHMakC5lc+GgBvBIGazQtQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><code>FContextMenu</code></td>
+        <td>contextmenu</td>
+        <td><strong>1</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDCAewrYAHpgCyiCvCoB6OTXRHGsOeex4ipSuhYBjSQwiZWiTPAhyGeKqSnsBUKupauvqGAL5UAGaSqjhUfAAC8QDW8AxGCIh8jkYubh4kIAA0IAEQQZgAtDiEMABWLOqoIMB8NXUsfCjdIBnZufkDfAAWmJgQLChGRogsONAsk0YjOXlIaQBs0AAsAOzQAAx8FelZ23TLDCIUEyDTs-OLznQU0G13+EySaAUbxGCgQHCbG65O4sB4UfZHU5nCwMNgWFj1ZwsDGEfD4aBY-ogGIxYlAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><code>FCrudDataset</code></td>
+        <td>crud-dataset</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDCk+HQAixQi0SYqAejk10BxrDmnseIqUroWAY0kMI+3ZngQ5DPAHtJfWAqFTVNbQ8qAF8qADNJPxwqPgABWIBreAYDBEQ+ewMnFzcSEAAaEF8IAMwAWhxCGAArFj8KVBBgPiqalj4ULpA0zOzc-r4AC0xMCBYUAwNEFhxoFgmDYaycpBSANmgAFgB2aAAGPjLUjK26JYYRCnGQKZm5hcc6CmgW2-wmSWgFD0BgoEBwG2u2VuLHuFD2hxOpzMDDYZhYtUcLHRhHw+GgmL6ICiUSJQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><code>FDataTable</code></td>
+        <td>table</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAixQgBVCAIy5UA9HJro9jWHOPY8RUpXQsAxpIYRMrRJngQ5DPAHtJrsBUKmqaOohUAL5UAGaSvjhUfAACMQDW8Ax6CIh8tnoOTi4kIAA0ID4Q-pgAtDiEMABWLL4UqCDAfJXVLHwonSCpGVk5fXwAFpiYECwoenqILDjQLON6Q5nZSMkAbNAALADs0AAMfKUp6Zt0iwwiFGMgk9Oz8-Z0FNDNN-hMktAUdx6CgQHDrK5ZG4sO4UXYHY4nEwMNgmFg1ewsNGEfD4aAY3ogSKRQlAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><code>FDatepickerField</code></td>
+        <td>datepicker-field</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPiXQAxACLFEEBgGMA1oknyGifHSqwAtDgD2dA7xB1ZWXARVUAxFYBmhePkwkAagAn+ABWVHTE8DjoAPTYeESkMUoqalo6egZ0ctGMsOQUMXFOpJToLOqSDBCYrIiY8BD5DHjmkjXAVNLuVAC+VO6S5jhUfAiIfJTNEK3tVMnYqdq6+oa9-YPDfAAC7prwDNFjExTq5hRsYVTcnYjuABQTIACUpdHlldUkIAA0IFMzZkIMGCLDOqBAwD4-zaLD4KEhIB2ewOR1QfAAFphMBAWChotFECwcNAWOjokj9ockFsAGzQAAsAHZoAAGPjfba7SlWFgMEQUOEYrE4vHRdR0CjQEFWfBMSTQCh1aIUCA4clcg48vkUWkM5ksnIMNg5FgmdQsU2EfD4aDm2EgHo9B1AA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td><code>FDefinitionList</code></td>
+        <td>definition-list</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAiiAGYMKDTAwD2FADIM2VAPRya6U41hyr2PEVKV0LAMaSGETK0SZ4EHIMeLqSPsBUKuqa2nqGxj4AvlRqkro4VHwAAmoA1vAMpgiIfC6m7p7eJCAANCDBEKGYALQ4hDAAViz6qCDAfA1NLHwo-SA5+YXFI3wAFpiYECwopqaILDjQLLOmEwVFSFkAbNAALADs0AAMfDXZeft06wwiFDMg84vLq250FNBdJ74JiSaAUPymCgQHC7B6FJ4sF4UY5nS5XawJawsZpuFjYwj4fDQXHDECJRJkoA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td><code>FDetailsPanel</code></td>
+        <td>—</td>
+        <td><strong>1</strong> <small>(0 SCSS + 1 JS)</small></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAiiTIQb4WABUIVE+KgHo5NdEcaw557HiKlK6FgGNJDCJlZr4EOQzwA9pKewFQqahpauvqGAL5UAGaSAThUfAACCQDW8AxGCIh8jkYubh4kIAA0IP4QQZgAtDiEMABWLAEUqCDAfLX1LHwovSCZOXkFQ3wAFpiYECwoRkaILDjQLNNGY7n5SOkAbNAALADs0AAMfJUZ2bt0qwwiFFMgs-OLy850FNDtD-gmJJoPpMEYKBAcNs7nkHiwnhRDidzhcLAw2BYWA1nCwsYR8PhoDjBiBYrFSUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td><code>FDialogueTree</code></td>
+        <td>dialogue-tree</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAiDQvgD2IpABVpiKgHo5NdIcaw5Z7HiKlK6FgGNJDCJlaJM8CHIZ4NSQ9gKhU1TW1EPUQDAF8qADNJDRwqPgABBIBreAZDBEQ+B0NnV3cSEAAaEH8IQMwAWhxCGAArFg0KVBBgPlr6lj4UXpBMnLyCob4AC0xMCBYUQ0NEFhxoFmnDMdz8pHSANmgAFgB2aAAGPkqM7N26VYYRCimQWfnF5ac6Cmh2h-wTEk0AoXkMFAgOG2dzyDxYTwohxO5wu5gYbHMLAaThYWPU+GgOMGIFisRJQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td><code>FErrorList</code></td>
+        <td>error-list</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCikyQHtJAGQZsqAejk10+xrDknseIqUroWAY0kMImVokzwIchnk1vgKhU1TR09AF8qADMNHCo+AAEogGt4Bn0ERD47fUdnVxIQABoQXwh-AFocQhgAKxZ1ClQQYD4y-xY+FFaQJNT0zK6+AAtMTAgWFH19RBYcaBZh-T60jKQEgDZoABYAdmgABj4ixJTVulmGEQohkFHxyemHOgpoeov8JkloCg99CggOGWZ3SFxYVwomx2+wOpl0mFMLAqDhYSMI+Hw0BRnRA4XCuKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td><code>FExpand</code></td>
+        <td>—</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCiADwEU6VAPRya6bY1hyD2PEVKV0LAMaSGETK0SZ4EOQzwB7SU+BUVdUJNKgBfKgAzSS8cKj4AAQiAa3gGbQREPittW3tHEhAAGhBPCB9MAFocQhgAKxYvClQQYD5S8pY+FFaQRJS0jK6+AAtMTAgWFG1tRBYcaBZh7T7U9KR4gDZoABYAdmgABj5ChOTVulmGEQohkFHxyembOgpoeov8JkloChdtCggOGWZzSFxYVwomx2+wOhgYbEMLAqNhYSMI+Hw0BRnRAoVCuKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td><code>FExpandablePanel</code></td>
+        <td>expandable-panel</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCiADwEU6hAEZcACoQqJ8VAPRya6U41hyr2PEVKV0LAMaSGETK0SZ4EHIMeAD2kj7AVCrqhlq6iAZGJgC+VABmkiE4VHwAAmkA1vAMpgiIfC6m7p7eJCAANCDBEGGYALQ4hDAAViwhFKggwHzNrSx8KMMg+UUlZRN8ABaYmBAsKKamiCw40CyLpjPFpUi5AGzQACwA7NAADHz1eYXHdNsMIhQLIMur65tuOgUaC9N74JiSaBGTCmCgQHCHF4lN4sD4Uc5XW53awMNjWFhtNwsAmEfD4aBE8YgZLJalAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td><code>FExpandableParagraph</code></td>
+        <td>expandable-paragraph</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCiADwEU6hAEZcACoUmERRiAAsqAejk10lxrDl3seIqUroWAY0kMImVkRMeAg5BjwAe0kA4CoVdUJNHX1DY1MLAF8qADNJCJwqPgABbIBreAZLBEQ+D0tvX38SEAAaEHCIKMwAWhxCGAArFgiKVBBgPg6ulj4UCZAS8srq2b4zTEwIFhRLS0QWHGgWM0tFiqqkIoA2aAAWAHZoAAY+FuKy87p9hhEKVZB1pttrsvHQKNAhl98ExJNAKEFLBQIDhTh9Kl8WD8KNc7o8nvYGGx7Cxul4WCTCPh8NAyTMQBkMvSgA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td><code>FFieldset</code></td>
+        <td>fieldset</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMUUNE+Oi0SYqAejk10OxrDmHseIqUroWAY0kMI2zZngQ5DPAHtJ24FWVVdRcqAF8qADNJLxwqPgABCIBreAYdBEQ+ax07BycSEAAaEE8IH0wAWhxCGAArFi8KVBBgPlLylj4UVpBElLSMrr4AC0xMCBYUHR1EFhxoFmGdPtT0pHiANmgAFgB2aAAGPkKE5NW6WYYRCiGQUfHJ6ds6Cmh6i-wmSWgKLR0KCA4ZZnNIXFhXCibHb7A5GBhsIwsCq2FhIwj4fDQFGdEChUK4oA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td><code>FFileItem</code></td>
+        <td>file-item</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMUUMuASWw4qAejk102xrDkHNBYohMsAxpIYRMrRJngQ5DPAHtJj4FWWqiBq4VAC+VABmkp5afAACEQDW8AzaCIh8lAY2dg4kIAA0IB4Q3pgAtDiEMABWLJ4UqCDAfCVlLHwoLSAJyanpnXwAFpiYECwo2tqILDjQLEPavSlpSHEAbNAALADs0AAMfAXxSSt0MwwiFIMgI2MTU9Z0FNB15-hMktAUztoUEDglqdUucWJcKBttnt9oYGGxDCxytYWIjCPh8NBkR0QKFQjigA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td><code>FFileSelector</code></td>
+        <td>file-selector</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMUUMuAZURcAxpgD2kqgHo5NdIcaw5Z7HiKlK6FlskMImVokzwIchnn3uwFTKqoga2noGAL5UAGaSujhUfAACsQDW8AyGCIh8DoZOLm4kIAA0IH4QAQC0OIQwAFYsuhSoIMB8VQEsfCidIGmZ2bl9fAAWmJgQLCiGhogsONAs44ZDWTlIKQBs0AAsAOzQAAx8ZakZm3SLDCIUYyCT07PzWnQU0M03+EyS0BRPIYKBAcOsrtkbiw7hRdgdjidzAw2OYWDUtCw0YR8PhoBjeiAolFCUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td><code>FFixedPane</code></td>
+        <td>static-panel</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMUUMAHojoAFQhURUA9HJrp9jWHJPY8RUpXQsAxpIYRMrRJngQ5DPAHtJN2AqZTUNbV0qAF8qADNJPxwqPgABWIBreAZ9BEQ+O31HZ1cSEAAaEF8IAMwAWhxCGAArFj8KVBBgPiqalj4ULpA0zOzc-r4AC0xMCBYUfX1EFhxoFgn9YaycpBSANmgAFgB2aAAGPjLUjK26JYYRCnGQKZm5hYc6CmgW2-wmSWgukw+goEBwG2u2VuLHuFD2hxOp1MDDYphYtQcLHRhHw+GgmL6ICiUSJQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td><code>FIcon</code></td>
+        <td>icon</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCSAYwD21APRya6LY1hz92PEVKV0LVZIYRMrRJngQ5DPOskPgVFRuoAvlQAZpLqOFR8AALBANbwDFoIiHyWWta29iQgADQg7hCemAC0OIQwAFYsmqggwHwFRSx8KPUgMfGJyS18ABaYmBAsKFpaiCw40Cy9Wh0JSUhRAGzQACwA7NAADHw50XHzdOMMIhQ9IP2Dw6OqdBTQVUf4TJLQFE5aFBA4sweJRywThRlmtNlsDAw2AYWMVVCwYYR8PhoHDmiAAgF0UA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td><code>FInteractiveTable</code></td>
+        <td>table-ng</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCSFbJMIBjTE0QAVQgCMuVAPRya6U41hyr2PEVKV0LTZIYRMrRJngQ5BjwAe0lvYCoVNUQNbV0DY0QqAF8qADNJYJwqPgABNIBreAZTBEQ+F1M3Dy8SEAAaECCIUMwAWhxCGAArFmCKVBBgPmbWlj4UYZB8opKyib4AC0xMCBYUU1NEFhxoFkXTGeLSpFyANmgAFgB2aAAGPnq8wuO6bYYRCgWQZdX1zc0dAo0F6b3wTEk0AovlMFAgOEOLxKbxYHwo5yutzu1gYbGsLDamhYBMI+Hw0CJ4xAyWS1KAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td><code>FLabel</code></td>
+        <td>label</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyhAEaJ8VAPRya6bY1hyD2PEVKV0LAMaSGETK0SZ4EOQzwB7SU+BUVdU0qAF8qADNJLxwqPgABcIBreAZtBEQ+K21be0cSEAAaEE8IH0wAWhxCGAArFi8KVBBgPhKylj4UFpAE5NT0zr4AC0xMCBYUbW1EFhxoFiHtXpS0pDiANmgAFgB2aAAGPgL4pJW6GYYRCkGQEbGJqZs6Cmg68-wmSWgKF20KCBwS1OqXOLEuFA22z2+0MDDYhhY5RsLERhHw+GgyI6IBCIRxQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td><code>FLayoutApplicationTemplate</code></td>
+        <td>layout-application-template</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyhdgHt4mSAQYBjYg3UUAKrgLFEVAPRya6a41hyH2PEVKV0LPZIYRMVkRMeAg5Bjx1SUDgKhU1TW0ofH1DYzN3SyoAXyoAM0l1HCo+AAE8gGt4BmsERD4vax8-AJIQABoQCIgozABaHEIYACsWY1QQYD5u3pY+FCmQcqqauvm+AAtMTAgWFGtrRBYcaBYN62Xq2qRSgDZoABYAdmgABj52ssqruiOGEQo6xAWx2ewOejoFGgo1+KVgkmgFGC1goEBwF2+NV+LH+FDujxer0cDDYjhYfT0LHJhHw+GglLmIGy2SZQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td><code>FLayoutLeftPanel</code></td>
+        <td>layout-secondary</td>
+        <td><strong>1</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyhdgHt4mZYgBmmAAqEKifFQD0cmunONYcm9jxFSldCwDGkhhEytEmPAQcgx46pJ+wFQqapraeobGplQAvlS6kuo4VHwAAroA1vAM5giIfG7mnt6+JCAANCChEOGYALQ4hDAAVizqFKggwHzNrSx8KMMg+UUlZRN8ABaYmBAsKObmiCw40CyL5jPFpUi5AGzQACwA7NAADHz1eYXHdNsMIhQLIMur65seOgUaC9N74JiSaAmTDmCgQHCHF4lN4sD4Uc5XW53WwMNi2FhtDwsAmEfD4aBE8YgFIpalAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td><code>FLayoutRightPanel</code></td>
+        <td>layout-secondary</td>
+        <td><strong>1</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyhdgHt4mAEoMRAC0wAFQhUT4qAejk10lxrDl3seIqUroWAY0kMImVkRMeAg5Bjx1SQDgKhU1TR09QxMzCwBfKgAzSXUcKj4AAUyAa3gGSwREPg9Lb19-EhAAGhBwiEjMAFocQhgAKxZ1ClQQYD42jpY+FDGQItLyyum+Q0wIFhRLS0QWHGgWfUt5soqkAoA2aAAWAHZoAAY+JsKSk7odvQplkFX1zcsvHQKNABu98ExJNAzJhLBQIDgjq9yu8WJ8Ltc7vd7Aw2PYWJ0vCx8YR8PhoISpiA0mkqUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td><code>FList</code></td>
+        <td>list</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyDNlQD0cmug2NYc3djxFSldCwDGkhhEytEmeBDkM8Ae0n3gVFWvsAvlQAZpLuOFR8AALBANbwDBoIiHzmGlY2diQgADQgbhCemAC0OIQwAFYs7hSoIMB8BUUsfCgNIDHxicmtfAAWmJgQLCgaGogsONAsfRqdCUlIUQBs0AAsAOzQAAx8OdFxC3QTDCIUvSADQyNjlnQU0FXH+EyS0BSOGhQQOHOHiccWKcKCt1lttnp-HoWMVLCwYYR8PhoHCWiAAgF0UA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>28</td>
+        <td><code>FLoader</code></td>
+        <td>loader</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyAe0GJJVAPRya6bY1hyD2PEVKV0LAMaSGETK0SZ4EOQzyrJT4FRXqdJpUAL5UAGaSqjhUfAAC4QDW8AzaCIh8Vtq29o4kIAA0IJ4Q3pgAtDiEMABWLKoUqCDAfCVlLHwoLSAJyanpnXwAFpiYECwo2tqILDjQLEPavSlpSHEAbNAALADs0AAMfAXxSStBLAwiFIMgI2MTUzZ0FNB1QfhMktAULtoUEDglqdUudLhQNts9vtDAw2IYWOUbCwEYR8PhoEiOiAQiFsUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td><code>FLogo</code></td>
+        <td>logo</td>
+        <td><strong>1</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAyAexGqqAejk10WxrDn7seIqUroWAY0kMImVokzwIchnlWTHwKivWaAL5UAGaSqjhUfAACIQDW8AxaCIh8llo2dg4kIAA0IB4QXpgAtDiEMABWLKoUqCDAfIXFLHwojSCxCUkpbXwAFpiYECwoWlqILDjQLP1aXYnJSNEAbNAALADs0AAMfLkx8Yt0kwwiFH0gg8Oj49Z0FNDVJ-hMktAUzloUEDjzR0kTiwzhRVhttjsDAw2AYWCVrCw4YR8PhoAjWiBAoFMUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td><code>FMessageBox</code></td>
+        <td>message-box</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCyiFi0IjEAIQD2ADyoB6OTXRHGsOeex4ipSuhYBjSQwiZWiTPAhyGeLqSnsBUKmoaWnqGAL5UAGaSujhUfAAC8QDW8AxGCIh8jkYubh4kIAA0IAEQQZgAtDiEMABWLLoUqCDAfDV1LHwoPSAZ2bn5g3wAFpiYECwoRkZqONAsU0ajOXlIaQBs0AAsAOzQAAx8FelZ23RqDCIUkyAzcwtLznQU0G13+EySaAUbxGCgQHCbG65O4sB4UfZHU5nCwMNgWFj1ZzqeqEfD4aBYgYgGIxYlAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>31</td>
+        <td><code>FMinimizablePanel</code></td>
+        <td>—</td>
+        <td><strong>1</strong> <small>(0 SCSS + 1 JS)</small></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQCyDCgxwMAXoQBGXAAqEKifFQD0cmunONYcm9jxFSldCwDGkhhEytEmPAQchoQAPaSfsBUKmoa2nqGxqZUAL5UAGaSYThUfAACGQDW8AzmCIh8buae3r4kIAA0IKERmAC0OIQwAFYsYRSoIMB8rZEsfCgjIIUlZRWTfAAWmJgQLCjm5ogsONAsS+azpeVI+QBs0AAsAOzQAAx8jQXFJ3Q7DCIUiyAraxtbDx0CjQPrvfBMSTQEyYcwUCA4I6vMrvFifCgXa53e62BhsWwsdoeFiEwj4fDQYkTECpVI0oA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td><code>FModal</code></td>
+        <td>modal</td>
+        <td><strong>4</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQBC8TJgD21AAIBjfA10BrXiA0REFbpklJZANagVCVHBrqF86APQq1mijkFJQBZd08qFHNLU2iKPio9fA0WHj447gAzT1TZLFwCYkQqAGIAC0RBREkSMI8vb2w8IlJ85qLSukRs+HxMEgBJCgpEMoBT-AamwtbfOs8g2m9GWDkfaZbENZZdSQYITFZETHgIOQY8DUlD4CppTKoAXypMyQ0cKj4ERD5KC4grjcqIp5vgADTA1TqLRPF5vD58bSZIzwBjeb6-Ci6LRsKhxKjcO7dAAU2XwqQAlJQfDs9gcSCAwSB-oCALQ4QgwABWLC0qBAwD4LOuLD4KEFICRKLRGNQfDK6ggLBQ3m8iBYOGgLDK3ilqPRSG0ADZoAAWADs0AADHwwYjkfquiwGCJ4nKQArMEqVd5dHQKNAeV0DLBJNARphvBQIDhdQ60U6XRRjWbLVblgw2MsWKzdCwc558NA86KQI9HmWgA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td><code>FNavigationMenu</code></td>
+        <td>navigation-menu</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQByhWAxHEGAewoBZRBXhUA9HJroTjWHMvY8RUpXQsAxpIYRMrRJngQ5BjxtSW9gKhU1DS1dAyMqAF8qADNJbRwqPgABZIBreAYTBEQ+ZxM3Dy8SEAAaECCIEMwAWhxCGAArFl1UEGA+BqaWPhR+kBz8wuKRvgALTEwIFhQTE0QWHGgWWZMJgqKkLIA2aAAWAHZoAAY+Guy8-bp1jQoZkHnF5dXXOgpoLqe+CYkmgFF8JgoEBwuwehSeLBexzOlyuVgYbCsLGarhYWMI+Hw0BxwxACQSpKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>34</td>
+        <td><code>FOffline</code></td>
+        <td>offline</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDyAM1X4GFRFQD0cmul2NYco9jxFSldCwDGkhhEytEmeBDkM8Ae0kvgKhV1TW0qAF8qVUkfHCo+AAFVAGt4Bl0ERD4bXXtHZxIQABoQbwg-TABaHEIYACsWHwpUEGA+MoqWPhQ2kCTU9MzuvgALTEwIFhRdXUQWHGgWEd1+tIykBIA2aAAWAHZoAAY+IsSUtbo5hhEKYZAxiamZuzoKaAbLzVhJaG1MXQoEBwK3O6UuLGuFC2uwOh2MDDYxhYlTsLGRhHw+GgqK6IHC4TxQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td><code>FOutputField</code></td>
+        <td>output-field</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuANw5CADwC0AdwZ1MACxQAWAAx6ICviXQAxAPLxMEa2YaJ8dEgFEFuCI9gATyXUToAPSW1raY9o7OQYyw5BRB2HhEpJToLADGkgwQmKyImPAQcQx4APaSucBUITZ2Dk5UAL5UAGaSpThUfAACLQDW8AyBCIh8qYEZWTkkIAA0ICUQ5ZhK8jAAViylFKggwHyLyyx8KPsgvQNDIyd8mpg2LCiBgYgsONAsmoEXg8NI3QA2aA6ADs0D0fFmPX6v38LAYIgoNxAdweT0C6ToFGgm38+CYkmgFHygQoEBw3xhQzhCIogOBYL0gUYbGZLCU6RY7MI+Hw0E5xxAjUaQqAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>36</td>
+        <td><code>FPageHeader</code></td>
+        <td>page-header</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAKhEYgASiQYklUA9HJrp9jWHJPY8RUpXQsAxpIYRMrRJngQ5DPAHtJN2AqFTVNbTpdKgBfKgAzST8cKj4AATiAa3gGfQREPjt9R2dXEhAAGhBfCADMAFocQhgAKxY-ClQQYD5q2pY+FG6QdKycvIG+AAtMTAgWFH19RBYcaBZJ-RHs3KRUgDZoABYAdmgABj5ytMztyJYGEQoJkGnZ+cWHOgpoVsj8Jkk0AoHn0FAgOE2NxydweFH2R1OZ1MDDYphYdQcLHRhHw+GgmP6IGi0SJQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>37</td>
+        <td><code>FPageLayout</code></td>
+        <td>layout-application-template</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAKhEYgAyhdgHt4mKgHo5NdIcaw5Z7HiKlK6FgGNJDCAZaJM8CHIZ4dSQNgKhU1TW09AwBfKgAzSR0cKj4AATiAa3gGQwREPgdDZ1d3EhAAGhB-CEDMAFocQhgAKxYdClQQYD5q2pY+FG6QdKycvIG+AAtMTAgWFENDRBYcaBZJwxHs3KRUgDZoABYAdmgABj5ytMztumWGEQoJkGnZ+cWnOgpoVrv8Jkk0AoXkMFAgOE2NxydxYDwo+yOpzO5gYbHMLDqThYGMI+Hw0Cx-RA0WixKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>38</td>
+        <td><code>FPaginateDataset</code></td>
+        <td>—</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAKhEQwrFEAEWKEWiTFQD0cmumONYci9jxFSldCwDGkhhCMHM8CHIZ4APaSRsBUKmoaWrqY+oZUAL5UAGaSgThUfAACyQDW8AzGCIh8Tsau7p4kIAA0IAEQwZgAtDiEMABWLIEUqCDAfA1NLHwoAyA5+YXFo3wAFpiYECwoxsaILDjQLHPGkwVFSFkAbNAALADs0AAMfDXZeQd0GwwiFLMgC0sray50FNAus98ExJNAKIZjBQIDg9o9Cs8WK8KCdzldrpYGGxLCxmi4WLjCPh8NB8SMQAkEhSgA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>39</td>
+        <td><code>FPaginator</code></td>
+        <td>paginator</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAKhEQwrEA9pKoB6OTXR7GsOcex4ipSuhYBjSQwiZWiTPAhyGeHa+BUKmoa2roAvlQAZpJaOFR8AAKRANbwDHoIiHy2eg5OLiQgADQgPhB+ALQ4hDAAVixaFKggwHxlfix8KK0gSanpmV18ABaYmBAsKHp6iCw40CzDen1pGUgJAGzQACwA7NAADHxFiSmrdLMMIhRDIKPjk9P2dBTQ9Rf4TJLQFO56FBAcMszukLiwrhRNjt9gcTAw2CYWBV7CwkYR8PhoCjOiAwmFcUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td><code>FProgressbar</code></td>
+        <td>progressbar</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAKkgPYjpLFgCNCkqgHo5NdIcaw5Z7HiKlK6FgGNJDCJlaJM8CHIZ41SQ9gKhV1TURtPQMAXyoAM3UcKj4AAXiAa3gGQwREPgdDZ1d3EhAAGhB-CEDMAFocQhgAKxY1ClQQYD5q2pY+FG6QdKycvIG+AAtMTAgWFENDSJxoFknDEezcpFSANmgAFgB2aAAGPnK0zK26SIYRCgmQadn5xac6CmhW2-wmSWgFC8hgoEBwG2uOVuLHuFD2hxOp3MDDY5hYdSc2jqhHw+GgmP6IBiMSJQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td><code>FRadioField</code></td>
+        <td>radio-button</td>
+        <td><strong>1</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQBKghgHtFDRPjpVYAWhzq6O3iFh99hfEnOFZYdAHoVazdt1yFS1Yw86eobGpvjmliDWtjx8AEayAEIubv5agd60zoywci7YeESklOgsAMaSDBCYrIiY8BByDHjqktXAVNIAZlQAvlSdkuo4VHwIiHyUTRAtbVQpGmm6vf2Dw3wAAp0A1vAMzmMTFKXqFGz6VNwdiJ0AFHwOIACUxc5lFVUkIAA0IFMzRoQYAArFgnVAgYB8P6tFh8FCQkCbHZ7A6oPgAC0wmAgLBQzmciBYOGgLHRziRu32SHWADZoAAWADs0AADHwvhttpTTCwGCIKHCMVicXjnKU6BRoCDQkxJNAKLVnBQIDhyVy9jy+RRaQzmSysgw2FkWAZSiwTTZ8NAzbCQD0enagA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>42</td>
+        <td><code>FResizePane</code></td>
+        <td>—</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQBKiFgwBeiAAqEKiKgHo5NdIcaw5Z7HiKlK6FgGNJDCJlaJM8CHIZ4Ae0kPYCoVNU0dPQMAXyoAM0kAnCo+AAF4gGt4BkMERD4HQ2dXdxIQABoQfwggzABaHEIYACsWAIpUEGA+GrqWPhQekAzs3PzBvgALTEwIFhRDQzUcaBYpw1GcvKQ0gDZoABYAdmgABj4K9KztugiRCkmQGbmFpac6Cmg2u-wmSWg+kwhgoEBwmxuuTu6ge+yOpzO5gYbHMLHqThYaMI+Hw0AxAxAMRihKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>43</td>
+        <td><code>FSelectField</code></td>
+        <td>select-field</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuANw5CADwC0AdwZ1MACxQAWAAx6ICvuWo1aAMQDKiLgGNMFhrbpVYSnAHs6t3iFgmWLgExIhUAMQ+AGaE8PiYJABqACf4AFboAPTYeESklObm6J4QmAye1LCE+Eh+hCZgWSVlFSTFpeWV1bV8AEYmAEJNHa0FRZnWtogOTi6mNFmMsKZZOSH5FOgsdpIMpayImPAQpgx4npKYVMBU0lFUAL5UUZKeOFR8CIh8lGcQF1cbpN7I5nPhXE8Xm8PiAAAJRADW8AYmS+PwodgqbDcVG4t0QUQAFD8QABKShZba7UokEAAGhAfwBHkIMDSLAqqBAwD4TMuLD4KB5cMRyNRSEFfE0mEwEBYKEymUQLBw0BYmky8KRKK+sIAbNAdAB2aB6Ph0vhasU+FgMEQUSUgaWy+WKux0CjQdk+fBMSTQCiHTIUCA4TWilE2u0UfWGk16TKMNiJlhKOwsVPVfDQdMCkAPB75oA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>44</td>
+        <td><code>FSortFilterDataset</code></td>
+        <td>sort-filter-dataset</td>
+        <td><strong>1</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDKAe0mZFDfNkkARYoRaJMVAPRya6M41hzr2PEVKV0LAMaSGEU8czwIOQY8dVNgKhVQrR1EfUM-KgBfKgAzSVUcKj4AARSAa3gGMwREPlczDy8fEhAAGhBgiFCAWhxCGAArFlUKVBBgPkbQlj4UAZBcgqKS0b4AC0xMCBYUMzNEFhxoFjmzScLipGyANmgAFgB2aAAGPlqc-IO6DYYRClmQBaWVtfc6CmgXWe+CYkmgFBMZgoEBwe0eRWeLFeFBO5yu1xsDDYNhYzXcLFxhHw+Gg+JGIESiQpQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>45</td>
+        <td><code>FStaticField</code></td>
+        <td>output-field</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDKmYgwDGihonx0qAejk10BxrDmnseIqUroWGyQwiZWiTPAhyGeAPaSbsBUKmqYmtq6+gC+VABmkn44VHwAAnEA1vAMBgiIfPYGjs6uJCAANCC+EAGYALQ4hDAAVix+FKggwHzVtSx8KN0g6Vk5eQN8ABaYmBAsKAYGiCw40CyTBiPZuUipAGzQACwA7NAADHzlaZnbdMsMIhQTINOz84sadBTQrXf4TJJoBQPAYKBAcJsbjk7iwHhR9kdTmczAw2GYWHUNCwMYR8PhoFj+iBotFiUA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>46</td>
+        <td><code>FTable</code></td>
+        <td>table</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAqhAEZcqAejk10WxrDn7seIqUroWAY0kMImVokzwIchngD2kx8Cor1TQBfKgAzSU8cKj4AAVCAa3gGLQREPkstGzsHEhAAGhAPCG9MAFocQhgAKxZPClQQYD4ikpY+FCaQOMTk1Pa+AAtMTAgWFC0tRBYcaBYBrW6klKQYgDZoABYAdmgABj482ISluimGEQp+kCGRsYnrOgpoGtP8JkloCmctCggcBeOyVOLHOFDWmx2uwMDDYBhYpWsLHhhHw+GgiLaICCQSxQA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>47</td>
+        <td><code>FTableButton</code></td>
+        <td>table</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAqhAEZcAQvEyYA9tQD0cmukONYcs9jxFSldCwDGkhhEytEmeBDkM8epIewFQq6lo6+tQAvlQAZpJ6OFR8AAJxANbwDIYIiHwOhs6u7iQgADQg-hCBmAC0OIQwAFYsBqggwHzVtSx8KF0g6Vk5ef18ABa6ECwohoaILDjQLBOGw9m5SKkAbNAALADs0AAMfOVpmZt0iwwiFOMgU5gzc4ZOdBTQrTf4TJLQCheQwUCA4dZXHI3Fh3Ci7A7HE7mBhscwsOpOFjowj4fDQTF9EDRaJEoA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>48</td>
+        <td><code>FTableColumn</code></td>
+        <td>table</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAqhAEZcAwgHt88HNQD0cmukONYcs9jxFSldCwDGkhhEytEmeBDkM82pIewFQq6lq6+tQAvlQAZpLaOFR8AAJxANbwDIYIiHwOhs6u7iQgADQg-hCBmAC0OIQwAFYs2hSoIMB81bUsfCjdIOlZOXkDfAAWmJgQLCiGhogsONAsk4Yj2blIqQBs0AAsAOzQAAx85WmZ23TLDCIUEyDTs-OLTnQU0K13+EySaAULyGCgQHCbG45O4sB4UfZHU5ncwMNjmFh1JwsDGEfD4aBY-ogaLRYlAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>49</td>
+        <td><code>FTextField</code></td>
+        <td>text-field</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuANw5CADwC0AdwZ1MACxQAWAAx6ICviXQAxACqIFmMw0T46VWEpwB7Og94hYJrLgJiRCoAYk8AM0J4fEwSMwATmPQAemw8IlIUy2tbe0dTZMZYcgoUtMDSSnQWAGNJBghMVkRMeAgShjw3SSbgKmlwqgBfKnDJNxwqPgREPkpOiG7eqmybOwcnEbGJqZAAAXCAa3gGZJm5ihq3CjZnKm5+xHCACjmQAEoq5Nr6xpIQAA0IAWS1chBgACsWNdUCBgHwQT0WHwUPD9kcTmckCi+JpMJgICwUMlkogWDhoCxNMkDsdTjM9gA2aA6ADs0D0fABfFpmM8LAYIgoOJAeIJRJJNToFGgUM8+CYkmgFBayQoEBwNIxp35gooTJZ7L0hQYbEKLCUNRYFsI+Hw0CtyJAQyGzqAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>50</td>
+        <td><code>FTextareaField</code></td>
+        <td>textarea-field</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuANw5CADwC0AdwZ1MACxQAWAAx6ICviXQAxACqIFmQtMJmGifHSqwlOAPZ1nvELBMsXAJiRCoAYh8AM0J4fEwSKxt0AHpsPCJSVMtrW3tHZzpTFMZYcgpU9JDSSnQWAGNJBghMVkRMeAhyhjxPSVbgKmkoqgBfKijJTxwqPgREPkoeiD6BqhybO0QHJxcxiamZvgABKIBreAYU+cWKes8KNjcqbiHEKIAKRZAASlqUhpNFokEAAGhAy1WHkIMAAViwHqgQMA+JD+iw+CgUSBThcrjdUHxNJhMBAWCgUilECwcNAWJoUrjLtckMcAGzQHQAdmgej4oJO52ZPhYDBEFExRJJZIpKXqdAo0HhPnwTEk0Ao7RSFAgOEZQquIrFFHZnJ5ehKDDYJRYSnqLFthHw+Gg9oxIFGow9QA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>51</td>
+        <td><code>FTooltip</code></td>
+        <td>tooltip</td>
+        <td><strong>1</strong> <small>(0 SCSS + 1 JS)</small></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQAqAe1X5MDCFQD0cmul2NYco9jxFSldCwDGk7ZlaJM8CHIZ5Vk58Coq6praVAC+VABmkqo4VHwAAhEA1vAMugiIfDa69o4QmCQgADQgXhA+mAC0OIQwAFYsqhSoIMB8ZRUsfChtIIkpaRndfAAWmJgQLCi6uogsONAsI7r9qelI8QBs0AAsAOzQAAx8RQnJa3RzDCIUwyBjE1MzdnQU0A2X+EyS0BSuuhQIDgVuc0pcWNcKFtdgdDsYGGxjCxKnYWMjCPh8NBUV0QKFQnigA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>52</td>
+        <td><code>FValidationForm</code></td>
+        <td>—</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQBqhfAzrEGAewqLtknFQD0cmumONYci9jxFSldCwDGkhhEytEmeBDkMeAZewFQqahpauvqGVAC+VABmktpGfAACiQDW8AzGCIh8Tsau7p4kIAA0IIEQwQC0OIQwAFYsuqggwHy1wSx8KN0gmTl5BQN8ABaYmBAsKMbGiCw40CyTxiO5+UjpAGzQACwA7NAADHyVGdnbdMsMIhQTINOz84sudBTQbXfqsJJoBQfMYKBAcJsbnk7iwHhR9kdTmdLAw2JYWPUXCwMWp8NAsf0QHE4kSgA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>53</td>
+        <td><code>FValidationGroup</code></td>
+        <td>group</td>
+        <td>0</td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQBqhfAzrEGAewoBxSdvgQqAejk10pxrDlXseIqUroWAY0kMImVokzG5BjxtSR9gKhU1DS1dAyMTAF8qADNDHCo+AAFkgGt4BlMERD4XU3dPbxIQABoQIIgQzABaHEIYACsWXVQQYD56xpY+FD6QbLyCouG+AAtMTAgWFFNTRBYcaBYZ03H8wqRMgDZoABYAdmgABj5qrNy9ujWGEQppkDmFpZW3OgpoTse6lgkmgFD8pgoEBwO3uBUeLGeFCOpwul2sDDY1hYTTcLGxanw0FxQxACQSpKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+      <tr>
+        <td>54</td>
+        <td><code>FWizard</code></td>
+        <td>wizard</td>
+        <td><strong>2</strong></td>
+        <td><a href="https://play.vuejs.org/#N4IgggDhB0BuCuBTEAuEAeALogthANgIbYB8AOgHYAEV6AJgJaxUDOmAnvogLxkgSE6jCgHMUAJgBOuPuWo1aAMQDqDAF6FJdKgHo5NdDsaw5h7HiKlK6FgGNJDCJlaJM8CHIZ4A9pOfAqFXVNbQBfKgAzSW8cKj4AAQiAa3gGHQREPmsdOwcnEhAAGhAvCF9MAFocQhgAKxZvClQQYD5S8pY+FFaQRJS0jK6+AAtMTAgWFB0dRBYcaBZhnT7U9KR4gDZoABYAdmgABj5ChOTVulmGEQohkFHxyenbOgpoeov8JkloClcdCggOGWZzSFxYVwomx2+wORgYbCMLAqthYSMI+Hw0BRnRAoVCuKAA" target="_blank" rel="noopener">Open →</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>SCSS-only Components (no Vue wrapper)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Component</th>
+        <th>Breakpoints</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><code>anchor</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><code>chip</code></td>
+        <td><strong>1</strong></td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><code>close-button</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><code>combobox</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><code>entrypoint</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><code>file-uploader</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><code>indent</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td><code>layout-navigation</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td><code>selectable-item</code></td>
+        <td>0</td>
+        <td>CSS-only</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <footer style="margin-top:3rem;padding-top:1rem;border-top:1px solid #e0e0e0;color:#888;font-size:0.8rem">
+    Generated by <a href="https://github.com/pattespatte/fkui-components-list">fkui-components-list</a>
+  </footer>
+</body>
+</html>
