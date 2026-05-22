@@ -240,7 +240,22 @@ import { ref } from "vue"
 import { FExpandableParagraph } from "@fkui/vue"
 const open = ref(false)
 <\/script>`,
-  FFieldset: simpleTemplate("FFieldset"),
+  FFieldset: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FFieldset name="colors">
+      <template #label>Välj färg</template>
+      <template #default>
+        <FCheckboxField v-model="checks" :value="'röd'">Röd</FCheckboxField>
+        <FCheckboxField v-model="checks" :value="'blå'">Blå</FCheckboxField>
+      </template>
+    </FFieldset>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FFieldset, FCheckboxField } from "@fkui/vue"
+const checks = ref([])
+<\/script>`,
   FFileItem: simpleTemplate("FFileItem"),
   FFileSelector: simpleTemplate("FFileSelector"),
   FFixedPane: simpleTemplate("FFixedPane"),
