@@ -201,7 +201,19 @@ const tree = { label:"Vill du fortsätta?", options:[{ label:"Ja", question:{ la
 const progress = ref({})
 <\/script>`,
   FErrorList: simpleTemplate("FErrorList"),
-  FExpand: simpleTemplate("FExpand"),
+  FExpand: `<template>
+  <div style="padding:2rem">
+    <FButton @click="show=!show">Visa/dölj</FButton>
+    <FExpand>
+      <p v-if="show">Detta innehåll expanderar och kollapsar med animering.</p>
+    </FExpand>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FExpand, FButton } from "@fkui/vue"
+const show = ref(true)
+<\/script>`,
   FExpandablePanel: simpleTemplate("FExpandablePanel"),
   FExpandableParagraph: simpleTemplate("FExpandableParagraph"),
   FFieldset: simpleTemplate("FFieldset"),
