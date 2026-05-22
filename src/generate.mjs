@@ -189,14 +189,16 @@ const d = ref("")
   FDetailsPanel: simpleTemplate("FDetailsPanel"),
   FDialogueTree: `<template>
   <div style="padding:2rem">
-    <FDialogueTree v-model="question" :dialogue-tree="tree" />
+    <FDialogueTree v-model="progress" :dialogue-tree="tree">
+      <template #default="{ userData }"><p>Resultat: {{ userData }}</p></template>
+    </FDialogueTree>
   </div>
 </template>
 <script setup>
 import { ref } from "vue"
 import { FDialogueTree } from "@fkui/vue"
-const tree = { question:"Vill du fortsätta?", options:[{ key:"yes", label:"Ja", nextQuestion:{ question:"Bra!", options:[] } },{ key:"no", label:"Nej", nextQuestion:{ question:"Tråkigt!", options:[] } }] }
-const question = ref(tree)
+const tree = { label:"Vill du fortsätta?", options:[{ label:"Ja", question:{ label:"Bekräftelse", userData:{ val:"ja" } } },{ label:"Nej", question:{ label:"Avbryt", userData:{ val:"nej" } } }] }
+const progress = ref({})
 <\/script>`,
   FErrorList: simpleTemplate("FErrorList"),
   FExpand: simpleTemplate("FExpand"),
