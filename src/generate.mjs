@@ -269,10 +269,9 @@ function utoa(data) {
 }
 
 function makeUrl(template) {
-  const cssLoader = `;document.head.appendChild(Object.assign(document.createElement("link"),{rel:"stylesheet",href:"https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/lib/fkui.css"}))`;
-  const withCSS = template.replace("</script>", cssLoader + "</script>");
   const data = JSON.stringify({
-    "App.vue": withCSS,
+    "App.vue": template,
+    "style.css": `@import url("https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/lib/fkui.css");`,
     "import-map.json": JSON.stringify({
       imports: {
         "vue": "https://play.vuejs.org/vue.runtime.esm-browser.js",
