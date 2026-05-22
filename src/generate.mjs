@@ -146,13 +146,14 @@ const v = ref(false)
 <\/script>`,
   FContextMenu: `<template>
   <div style="padding:2rem">
-    <FButton @click="open=true">Öppna meny</FButton>
-    <FContextMenu :is-open="open" :items="items" @select="open=false" @close="open=false" />
+    <FButton ref="btn" @click="open=true">Öppna meny</FButton>
+    <FContextMenu :is-open="open" :items="items" :anchor="btn?.$el" @select="open=false" @close="open=false" />
   </div>
 </template>
 <script setup>
 import { ref } from "vue"
 import { FContextMenu, FButton } from "@fkui/vue"
+const btn = ref(null)
 const open = ref(false)
 const items = [{ key:"edit", label:"Redigera" },{ key:"copy", label:"Kopiera" }]
 <\/script>`,
