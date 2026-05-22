@@ -144,7 +144,18 @@ import { ref } from "vue"
 import { FCheckboxField } from "@fkui/vue"
 const v = ref(false)
 <\/script>`,
-  FContextMenu: simpleTemplate("FContextMenu"),
+  FContextMenu: `<template>
+  <div style="padding:2rem">
+    <FButton @click="open=true">Öppna meny</FButton>
+    <FContextMenu :is-open="open" :items="items" @select="open=false" @close="open=false" />
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FContextMenu, FButton } from "@fkui/vue"
+const open = ref(false)
+const items = [{ key:"edit", label:"Redigera" },{ key:"copy", label:"Kopiera" }]
+<\/script>`,
   FCrudDataset: `<template>
   <div style="padding:2rem">
     <FCrudDataset v-model="items">
@@ -175,7 +186,17 @@ const d = ref("")
 <\/script>`,
   FDefinitionList: simpleTemplate("FDefinitionList"),
   FDetailsPanel: simpleTemplate("FDetailsPanel"),
-  FDialogueTree: simpleTemplate("FDialogueTree"),
+  FDialogueTree: `<template>
+  <div style="padding:2rem">
+    <FDialogueTree v-model="question" :dialogue-tree="tree" />
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FDialogueTree } from "@fkui/vue"
+const tree = { question:"Vill du fortsätta?", options:[{ key:"yes", label:"Ja", nextQuestion:{ question:"Bra!", options:[] } },{ key:"no", label:"Nej", nextQuestion:{ question:"Tråkigt!", options:[] } }] }
+const question = ref(tree)
+<\/script>`,
   FErrorList: simpleTemplate("FErrorList"),
   FExpand: simpleTemplate("FExpand"),
   FExpandablePanel: simpleTemplate("FExpandablePanel"),
@@ -184,7 +205,14 @@ const d = ref("")
   FFileItem: simpleTemplate("FFileItem"),
   FFileSelector: simpleTemplate("FFileSelector"),
   FFixedPane: simpleTemplate("FFixedPane"),
-  FIcon: simpleTemplate("FIcon"),
+  FIcon: `<template>
+  <div style="padding:2rem">
+    <FIcon name="hamburger" />
+  </div>
+</template>
+<script setup>
+import { FIcon } from "@fkui/vue"
+<\/script>`,
   FInteractiveTable: `<template>
   <div style="padding:2rem">
     <FInteractiveTable :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]"><template #default><FTableColumn name="name" title="Namn" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FInteractiveTable>
@@ -257,7 +285,20 @@ import { ref } from "vue"
 import { FSelectField } from "@fkui/vue"
 const v = ref("")
 <\/script>`,
-  FSortFilterDataset: simpleTemplate("FSortFilterDataset"),
+  FSortFilterDataset: `<template>
+  <div style="padding:2rem">
+    <FSortFilterDataset :data="data" :sortable-attributes="['name']">
+      <template #default="{ data: items }">
+        <div v-for="item in items" :key="item.id">{{ item.name }}</div>
+      </template>
+    </FSortFilterDataset>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FSortFilterDataset } from "@fkui/vue"
+const data = ref([{ id:1, name:"Anna" },{ id:2, name:"Erik" },{ id:3, name:"Sara" }])
+<\/script>`,
   FStaticField: simpleTemplate("FStaticField"),
   FTable: simpleTemplate("FTable"),
   FTableButton: simpleTemplate("FTableButton"),
