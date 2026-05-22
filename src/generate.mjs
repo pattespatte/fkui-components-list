@@ -227,7 +227,19 @@ import { ref } from "vue"
 import { FExpandablePanel } from "@fkui/vue"
 const open = ref(false)
 <\/script>`,
-  FExpandableParagraph: simpleTemplate("FExpandableParagraph"),
+  FExpandableParagraph: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FExpandableParagraph :expanded="open" header-tag="span" @toggle="open=!open">
+      <template #title>Mer information</template>
+      <template #default><p>Här är innehållet som visas när stycket är expanderat.</p></template>
+    </FExpandableParagraph>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FExpandableParagraph } from "@fkui/vue"
+const open = ref(false)
+<\/script>`,
   FFieldset: simpleTemplate("FFieldset"),
   FFileItem: simpleTemplate("FFileItem"),
   FFileSelector: simpleTemplate("FFileSelector"),
