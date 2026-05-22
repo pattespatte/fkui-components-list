@@ -103,7 +103,18 @@ import { ${importList} } from "@fkui/vue"
 }
 
 const TEMPLATES = {
-  FBadge: simpleTemplate("FBadge"),
+  FBadge: `<template>
+  <div style="padding:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+    <FBadge status="default">Default</FBadge>
+    <FBadge status="warning">Warning</FBadge>
+    <FBadge status="error">Error</FBadge>
+    <FBadge status="success">Success</FBadge>
+    <FBadge status="info">Info</FBadge>
+  </div>
+</template>
+<script setup>
+import { FBadge } from "@fkui/vue"
+<\/script>`,
   FButton: `<template>
   <div style="padding:2rem;display:flex;gap:1rem;flex-wrap:wrap">
     <FButton>Primär</FButton>
