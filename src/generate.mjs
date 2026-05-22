@@ -84,6 +84,8 @@ const VUE_TO_SCSS = {
 
 const JS_MEDIA_QUERY = { FDetailsPanel: 1, FMinimizablePanel: 1, FTooltip: 1 };
 
+const FKUI_GITHUB = "https://github.com/Forsakringskassan/designsystem/blob/e3bf77abe4fe99b433bc62d2f6118c0776fa5898/packages";
+
 // ─── SFC Templates ─────────────────────────────────────────────────────────
 
 // Minimal templates — import component and render with basic props
@@ -352,10 +354,13 @@ function generateHTML(vueData, scssOnly) {
     const link = c.playgroundUrl
       ? `<a href="${c.playgroundUrl}" target="_blank" rel="noopener">Open →</a>`
       : "—";
+    const scssCell = c.scssName !== "—"
+      ? `<a href="${FKUI_GITHUB}/design/src/components/${c.scssName}/_${c.scssName}.scss" target="_blank" rel="noopener">${c.scssName}</a>`
+      : "—";
     return `      <tr>
         <td>${i + 1}</td>
-        <td><code>${c.name}</code></td>
-        <td>${c.scssName}</td>
+        <td><code><a href="${c.sourceUrl}" target="_blank" rel="noopener">${c.name}</a></code></td>
+        <td>${scssCell}</td>
         <td>${bp}</td>
         <td>${link}</td>
       </tr>`;
@@ -365,7 +370,7 @@ function generateHTML(vueData, scssOnly) {
     const bp = c.breakpoints > 0 ? `<strong>${c.breakpoints}</strong>` : "0";
     return `      <tr>
         <td>${i + 1}</td>
-        <td><code>${c.name}</code></td>
+        <td><code><a href="${FKUI_GITHUB}/design/src/components/${c.name}/_${c.name}.scss" target="_blank" rel="noopener">${c.name}</a></code></td>
         <td>${bp}</td>
         <td>CSS-only</td>
       </tr>`;
@@ -485,6 +490,7 @@ function main() {
     return {
       name,
       scssName: scssName || "—",
+      sourceUrl: `${FKUI_GITHUB}/vue/src/components/${name}/${name}.vue`,
       breakpoints: sBp + jBp,
       scssBp: sBp,
       jsBp: jBp,
