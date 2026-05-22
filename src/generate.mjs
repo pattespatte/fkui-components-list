@@ -269,10 +269,8 @@ function utoa(data) {
 }
 
 function makeUrl(template) {
-  const withCSS = template.replace(
-    "</template>",
-    `</template>\n<style>\n@import "https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/dist/ds-css-all.css";\n</style>`,
-  );
+  const cssLoader = `;document.head.appendChild(Object.assign(document.createElement("link"),{rel:"stylesheet",href:"https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/lib/fkui.css"}))`;
+  const withCSS = template.replace("</script>", cssLoader + "</script>");
   const data = JSON.stringify({
     "App.vue": withCSS,
     "import-map.json": JSON.stringify({
@@ -320,7 +318,7 @@ function generateHTML(vueData, scssOnly) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FKUI Components — @fkui/vue@${FKUI_VERSION}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/dist/ds-css-all.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/lib/fkui.css">
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 2rem; background: #f5f5f5; }
     h1 { margin-top: 0; }
