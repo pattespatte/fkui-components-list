@@ -269,12 +269,16 @@ function utoa(data) {
 }
 
 function makeUrl(template) {
+  const withCSS = template.replace(
+    "</template>",
+    `</template>\n<style>\n@import "https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/dist/ds-css-all.css";\n</style>`,
+  );
   const data = JSON.stringify({
-    "App.vue": template,
+    "App.vue": withCSS,
     "import-map.json": JSON.stringify({
       imports: {
-        "@fkui/vue": `https://esm.sh/@fkui/vue@${FKUI_VERSION}`,
-        "@fkui/design": `https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/dist/ds-css-all.css`,
+        "vue": "https://play.vuejs.org/vue.runtime.esm-browser.js",
+        "@fkui/vue": `https://esm.sh/@fkui/vue@${FKUI_VERSION}?external=vue`,
       },
     }),
   });
