@@ -256,7 +256,14 @@ import { ref } from "vue"
 import { FFieldset, FCheckboxField } from "@fkui/vue"
 const checks = ref([])
 <\/script>`,
-  FFileItem: simpleTemplate("FFileItem"),
+  FFileItem: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FFileItem file-name="dokument.pdf" mime-type="application/pdf" />
+  </div>
+</template>
+<script setup>
+import { FFileItem } from "@fkui/vue"
+<\/script>`,
   FFileSelector: simpleTemplate("FFileSelector"),
   FFixedPane: simpleTemplate("FFixedPane"),
   FIcon: `<template>
