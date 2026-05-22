@@ -214,7 +214,19 @@ import { ref } from "vue"
 import { FExpand, FButton } from "@fkui/vue"
 const show = ref(true)
 <\/script>`,
-  FExpandablePanel: simpleTemplate("FExpandablePanel"),
+  FExpandablePanel: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FExpandablePanel :expanded="open" @toggle="open=!open">
+      <template #title>Mer information</template>
+      <p>Här är innehållet som visas när panelen är expanderad.</p>
+    </FExpandablePanel>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FExpandablePanel } from "@fkui/vue"
+const open = ref(false)
+<\/script>`,
   FExpandableParagraph: simpleTemplate("FExpandableParagraph"),
   FFieldset: simpleTemplate("FFieldset"),
   FFileItem: simpleTemplate("FFileItem"),
