@@ -7,12 +7,16 @@
     "build": "npm run generate"
   },
   "type": "module",
-  "keywords": ["fkui", "design-system", "components"],
+  "keywords": [
+    "fkui",
+    "design-system",
+    "components"
+  ],
   "author": "Patrik Wästlund",
   "license": "MIT",
   "dependencies": {
-    "@fkui/vue": "^6.47.0",
     "@fkui/design": "^6.47.0",
-    "lz-string": "^1.5.0"
+    "@fkui/vue": "^6.47.0",
+    "fflate": "^0.8.3"
   }
 }

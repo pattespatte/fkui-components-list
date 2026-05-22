@@ -8,9 +8,8 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import lzString from "lz-string";
+import { strFromU8, strToU8, zlibSync } from "fflate";
 
-const { compressToEncodedURIComponent } = lzString;
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
 
@@ -262,6 +261,13 @@ function countInDir(dir) {
 
 // ─── Playground URL generation ─────────────────────────────────────────────
 
+function utoa(data) {
+  const buffer = strToU8(data);
+  const zipped = zlibSync(buffer, { level: 9 });
+  const binary = strFromU8(zipped, true);
+  return btoa(binary);
+}
+
 function makeUrl(template) {
   const data = JSON.stringify({
     "App.vue": template,
@@ -272,7 +278,7 @@ function makeUrl(template) {
       },
     }),
   });
-  return `https://play.vuejs.org/#${compressToEncodedURIComponent(data)}`;
+  return `https://play.vuejs.org/#${utoa(data)}`;
 }
 
 // ─── HTML Generation ───────────────────────────────────────────────────────
@@ -312,7 +318,7 @@ function generateHTML(vueData, scssOnly) {
   <title>FKUI Components — @fkui/vue@${FKUI_VERSION}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fkui/design@${FKUI_VERSION}/dist/ds-css-all.css">
   <style>
-    body { font-family: inherit; margin: 0; padding: 2rem; background: #f5f5f5; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 2rem; background: #f5f5f5; }
     h1 { margin-top: 0; }
     .meta { color: #666; margin-bottom: 2rem; }
     table { width: 100%; border-collapse: collapse; background: white; }
