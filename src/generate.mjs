@@ -196,8 +196,36 @@ import { ref } from "vue"
 import { FDatepickerField } from "@fkui/vue"
 const d = ref("")
 <\/script>`,
-  FDefinitionList: simpleTemplate("FDefinitionList"),
-  FDetailsPanel: simpleTemplate("FDetailsPanel"),
+  FDefinitionList: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FDefinitionList :definitions="defs" />
+  </div>
+</template>
+<script setup>
+import { FDefinitionList } from "@fkui/vue"
+const defs = [
+  { term: "Skulle ha jobbat", definition: "8 timmar" },
+  { term: "Vabbade", definition: "8 timmar" },
+  { term: "Omfattning", definition: "100 procent" },
+]
+<\/script>`,
+  FDetailsPanel: `<template>
+  <div style="padding:2rem">
+    <FButton @click="openPanel">Öppna panel</FButton>
+    <FDetailsPanel name="demo">
+      <template #default="{ close }">
+        <p>Detaljerat innehåll här.</p>
+        <FButton @click="close">Stäng</FButton>
+      </template>
+    </FDetailsPanel>
+  </div>
+</template>
+<script setup>
+import { FButton, FDetailsPanel } from "@fkui/vue"
+import { createDetailsPanel } from "@fkui/logic"
+const panel = createDetailsPanel("demo")
+function openPanel() { panel.open({}) }
+<\/script>`,
   FDialogueTree: `<template>
   <div style="padding:2rem">
     <FDialogueTree v-model="progress" :dialogue-tree="tree">
@@ -211,7 +239,14 @@ import { FDialogueTree } from "@fkui/vue"
 const tree = { label:"Vill du fortsätta?", options:[{ label:"Ja", question:{ label:"Bekräftelse", userData:"ja" } },{ label:"Nej", question:{ label:"Avbryt", userData:"nej" } }] }
 const progress = ref({})
 <\/script>`,
-  FErrorList: simpleTemplate("FErrorList"),
+  FErrorList: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FErrorList :items="[{title:'Namn är obligatoriskt'},{title:'Ogiltig e-postadress',id:'email'}]" />
+  </div>
+</template>
+<script setup>
+import { FErrorList } from "@fkui/vue"
+<\/script>`,
   FExpand: `<template>
   <div style="padding:2rem">
     <FButton @click="show=!show">Visa/dölj</FButton>
@@ -290,7 +325,14 @@ import { FFileSelector } from "@fkui/vue"
 const file = ref("")
 function onFile(e) { file.value = e[0]?.name || "" }
 <\/script>`,
-  FFixedPane: simpleTemplate("FFixedPane"),
+  FFixedPane: `<template>
+  <div style="padding:2rem">
+    <FFixedPane><p>Fast panelinnehåll</p></FFixedPane>
+  </div>
+</template>
+<script setup>
+import { FFixedPane } from "@fkui/vue"
+<\/script>`,
   FIcon: `<template>
   <div style="padding:2rem">
     <FIcon name="hamburger" />
@@ -307,14 +349,70 @@ import { FIcon } from "@fkui/vue"
 <script setup>
 import { FInteractiveTable, FTableColumn } from "@fkui/vue"
 <\/script>`,
-  FLabel: simpleTemplate("FLabel"),
-  FLayoutApplicationTemplate: simpleTemplate("FLayoutApplicationTemplate"),
+  FLabel: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FLabel for="demo-input">Etikett</FLabel>
+    <input id="demo-input" style="width:100%;padding:0.5rem" />
+  </div>
+</template>
+<script setup>
+import { FLabel } from "@fkui/vue"
+<\/script>`,
+  FLayoutApplicationTemplate: `<template>
+  <FLayoutApplicationTemplate>
+    <template #header><div style="padding:0.5rem 1rem;background:#0066cc;color:white">Rubrik</div></template>
+    <template #default><div style="padding:2rem">Huvudinnehåll</div></template>
+  </FLayoutApplicationTemplate>
+</template>
+<script setup>
+import { FLayoutApplicationTemplate } from "@fkui/vue"
+<\/script>`,
   FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
-  FLayoutRightPanel: simpleTemplate("FLayoutRightPanel"),
-  FList: simpleTemplate("FList"),
-  FLoader: simpleTemplate("FLoader"),
-  FLogo: simpleTemplate("FLogo"),
-  FMessageBox: simpleTemplate("FMessageBox"),
+  FLayoutRightPanel: `<template>
+  <FLayoutRightPanel>
+    <template #default><div style="padding:2rem"><p>Huvudinnehåll</p><FButton @click="open">Öppna panel</FButton></div></template>
+    <template #heading>Detaljer</template>
+    <template #content><div style="padding:1rem"><p>Högerpanelinnehåll</p></div></template>
+  </FLayoutRightPanel>
+</template>
+<script setup>
+import { FLayoutRightPanel, FButton } from "@fkui/vue"
+import { FLayoutRightPanelService } from "@fkui/vue"
+function open() { FLayoutRightPanelService.open() }
+<\/script>`,
+  FList: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FList :items="items" key-attribute="id"><template #default="{ item }">{{ item.name }}</template></FList>
+  </div>
+</template>
+<script setup>
+import { FList } from "@fkui/vue"
+const items = [{ id:1, name:"Äpple" },{ id:2, name:"Banan" },{ id:3, name:"Citron" }]
+<\/script>`,
+  FLoader: `<template>
+  <div style="padding:2rem">
+    <FLoader :show="true" />
+  </div>
+</template>
+<script setup>
+import { FLoader } from "@fkui/vue"
+<\/script>`,
+  FLogo: `<template>
+  <div style="padding:2rem">
+    <FLogo>Försäkringskassan</FLogo>
+  </div>
+</template>
+<script setup>
+import { FLogo } from "@fkui/vue"
+<\/script>`,
+  FMessageBox: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FMessageBox type="info"><template #default="{ headingSlotClass }"><h2 :class="headingSlotClass">Informationsmeddelande</h2><p>Detta är ett exempel på en meddelanderuta.</p></template></FMessageBox>
+  </div>
+</template>
+<script setup>
+import { FMessageBox } from "@fkui/vue"
+<\/script>`,
   FMinimizablePanel: simpleTemplate("FMinimizablePanel"),
   FModal: `<template>
   <div style="padding:2rem">
@@ -335,18 +433,69 @@ const open = ref(false)
 <script setup>
 import { FNavigationMenu } from "@fkui/vue"
 <\/script>`,
-  FOffline: simpleTemplate("FOffline"),
+  FOffline: `<template>
+  <div style="padding:2rem">
+    <FOffline><template #default>Du verkar inte ha någon internetuppkoppling.</template></FOffline>
+  </div>
+</template>
+<script setup>
+import { FOffline } from "@fkui/vue"
+<\/script>`,
   FOutputField: `<template>
   <div style="padding:2rem;max-width:400px"><FOutputField>Exempelvärde</FOutputField></div>
 </template>
 <script setup>
 import { FOutputField } from "@fkui/vue"
 <\/script>`,
-  FPageHeader: simpleTemplate("FPageHeader"),
-  FPageLayout: simpleTemplate("FPageLayout"),
-  FPaginateDataset: simpleTemplate("FPaginateDataset"),
-  FPaginator: simpleTemplate("FPaginator"),
-  FProgressbar: simpleTemplate("FProgressbar"),
+  FPageHeader: `<template>
+  <FPageHeader>Min applikation</FPageHeader>
+</template>
+<script setup>
+import { FPageHeader } from "@fkui/vue"
+<\/script>`,
+  FPageLayout: `<template>
+  <FPageLayout layout="simple">
+    <template #header><div style="padding:0.5rem 1rem;background:#0066cc;color:white">Rubrik</div></template>
+    <template #content><div style="padding:2rem">Sidinnehåll</div></template>
+  </FPageLayout>
+</template>
+<script setup>
+import { FPageLayout } from "@fkui/vue"
+<\/script>`,
+  FPaginateDataset: `<template>
+  <div style="padding:2rem">
+    <FPaginateDataset v-model="page" :items="items" :items-per-page="3">
+      <template #default="{ items: rows, currentPage, numberOfPages }">
+        <div v-for="item in rows" :key="item.id" style="padding:0.25rem 0">{{ item.name }}</div>
+        <p style="margin-top:1rem">Sida {{ currentPage }} av {{ numberOfPages }}</p>
+      </template>
+    </FPaginateDataset>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FPaginateDataset } from "@fkui/vue"
+const page = ref(1)
+const items = [{id:1,name:"Anna"},{id:2,name:"Erik"},{id:3,name:"Sara"},{id:4,name:"Olof"},{id:5,name:"Karin"},{id:6,name:"Nils"}]
+<\/script>`,
+  FPaginator: `<template>
+  <div style="padding:2rem">
+    <FPaginator :number-of-pages="5" v-model="page" />
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FPaginator } from "@fkui/vue"
+const page = ref(1)
+<\/script>`,
+  FProgressbar: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FProgressbar :value="65" aria-label="Uppladdningsförlopp" />
+  </div>
+</template>
+<script setup>
+import { FProgressbar } from "@fkui/vue"
+<\/script>`,
   FRadioField: `<template>
   <div style="padding:2rem">
     <FRadioField v-model="v" value="a">A</FRadioField>
@@ -358,7 +507,14 @@ import { ref } from "vue"
 import { FRadioField } from "@fkui/vue"
 const v = ref("a")
 <\/script>`,
-  FResizePane: simpleTemplate("FResizePane"),
+  FResizePane: `<template>
+  <div style="padding:2rem">
+    <FResizePane min="100px" max="600px" initial="300px"><p>Storleksändringsbart panelinnehåll</p></FResizePane>
+  </div>
+</template>
+<script setup>
+import { FResizePane } from "@fkui/vue"
+<\/script>`,
   FSelectField: `<template>
   <div style="padding:2rem;max-width:400px">
     <FSelectField v-model="v"><template #default>Välj</template>
@@ -385,10 +541,38 @@ import { ref } from "vue"
 import { FSortFilterDataset } from "@fkui/vue"
 const data = ref([{ id:1, name:"Anna" },{ id:2, name:"Erik" },{ id:3, name:"Sara" }])
 <\/script>`,
-  FStaticField: simpleTemplate("FStaticField"),
-  FTable: simpleTemplate("FTable"),
-  FTableButton: simpleTemplate("FTableButton"),
-  FTableColumn: simpleTemplate("FTableColumn"),
+  FStaticField: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FStaticField><template #label>Namn</template>Anna Andersson</FStaticField>
+  </div>
+</template>
+<script setup>
+import { FStaticField } from "@fkui/vue"
+<\/script>`,
+  FTable: `<template>
+  <div style="padding:2rem">
+    <FTable :columns="[{header:'Namn',key:'name'},{header:'Ålder',key:'age'}]" :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]" key-attribute="name" />
+  </div>
+</template>
+<script setup>
+import { FTable } from "@fkui/vue"
+<\/script>`,
+  FTableButton: `<template>
+  <div style="padding:2rem">
+    <FTableButton label>Redigera</FTableButton>
+  </div>
+</template>
+<script setup>
+import { FTableButton } from "@fkui/vue"
+<\/script>`,
+  FTableColumn: `<template>
+  <div style="padding:2rem">
+    <FDataTable :rows="[{name:'Anna',age:30}]"><template #default><FTableColumn name="name" title="Namn" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FDataTable>
+  </div>
+</template>
+<script setup>
+import { FDataTable, FTableColumn } from "@fkui/vue"
+<\/script>`,
   FTextareaField: `<template>
   <div style="padding:2rem;max-width:400px"><FTextareaField v-model="v"><template #default>Text</template></FTextareaField></div>
 </template>
@@ -413,8 +597,34 @@ const v = ref("")
 <script setup>
 import { FTooltip } from "@fkui/vue"
 <\/script>`,
-  FValidationForm: simpleTemplate("FValidationForm"),
-  FValidationGroup: simpleTemplate("FValidationGroup"),
+  FValidationForm: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FValidationForm @submit="onSubmit">
+      <FTextField v-model="name"><template #default>Namn</template></FTextField>
+      <FButton type="submit" style="margin-top:1rem">Skicka</FButton>
+    </FValidationForm>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FValidationForm, FTextField, FButton } from "@fkui/vue"
+const name = ref("")
+function onSubmit() {}
+<\/script>`,
+  FValidationGroup: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FValidationGroup v-model="valid">
+      <FTextField v-model="name"><template #default>Namn</template></FTextField>
+    </FValidationGroup>
+    <p style="margin-top:1rem">Grupp giltig: {{ valid?.isValid ?? "?" }}</p>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FValidationGroup, FTextField } from "@fkui/vue"
+const name = ref("")
+const valid = ref(null)
+<\/script>`,
   FWizard: `<template>
   <div style="padding:2rem">
     <FWizard title="Guidat formulär" :steps="[{title:'Steg 1'},{title:'Steg 2'}]" />
