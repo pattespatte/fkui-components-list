@@ -113,7 +113,18 @@ const TEMPLATES = {
 <script setup>
 import { FButton } from "@fkui/vue"
 <\/script>`,
-  FCalendar: simpleTemplate("FCalendar"),
+  FCalendar: `<template>
+  <div style="padding:2rem">
+    <FCalendar v-model="date" :min-date="minDate" :max-date="maxDate" />
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FCalendar } from "@fkui/vue"
+const date = ref(new Date(2025, 0, 15))
+const minDate = ref(new Date(2025, 0, 1))
+const maxDate = ref(new Date(2025, 11, 31))
+<\/script>`,
   FCard: `<template>
   <div style="padding:2rem;max-width:600px">
     <FCard heading-tag="h2"><template #header>Rubrik</template><template #default>Innehåll</template></FCard>
@@ -132,7 +143,14 @@ const v = ref(false)
 <\/script>`,
   FContextMenu: simpleTemplate("FContextMenu"),
   FCrudDataset: simpleTemplate("FCrudDataset"),
-  FDataTable: simpleTemplate("FDataTable"),
+  FDataTable: `<template>
+  <div style="padding:2rem">
+    <FDataTable :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]"><template #default><FTableColumn name="name" title="Namn" :sortable="true" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FDataTable>
+  </div>
+</template>
+<script setup>
+import { FDataTable, FTableColumn } from "@fkui/vue"
+<\/script>`,
   FDatepickerField: `<template>
   <div style="padding:2rem"><FDatepickerField v-model="d"><template #default>Välj datum</template></FDatepickerField></div>
 </template>
@@ -153,7 +171,14 @@ const d = ref("")
   FFileSelector: simpleTemplate("FFileSelector"),
   FFixedPane: simpleTemplate("FFixedPane"),
   FIcon: simpleTemplate("FIcon"),
-  FInteractiveTable: simpleTemplate("FInteractiveTable"),
+  FInteractiveTable: `<template>
+  <div style="padding:2rem">
+    <FInteractiveTable :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]"><template #default><FTableColumn name="name" title="Namn" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FInteractiveTable>
+  </div>
+</template>
+<script setup>
+import { FInteractiveTable, FTableColumn } from "@fkui/vue"
+<\/script>`,
   FLabel: simpleTemplate("FLabel"),
   FLayoutApplicationTemplate: simpleTemplate("FLayoutApplicationTemplate"),
   FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
@@ -174,7 +199,14 @@ import { ref } from "vue"
 import { FModal, FButton } from "@fkui/vue"
 const open = ref(false)
 <\/script>`,
-  FNavigationMenu: simpleTemplate("FNavigationMenu"),
+  FNavigationMenu: `<template>
+  <div style="padding:2rem">
+    <FNavigationMenu :routes="[{label:'Hem',route:'/home'},{label:'Om',route:'/about'}]" />
+  </div>
+</template>
+<script setup>
+import { FNavigationMenu } from "@fkui/vue"
+<\/script>`,
   FOffline: simpleTemplate("FOffline"),
   FOutputField: `<template>
   <div style="padding:2rem;max-width:400px"><FOutputField>Exempelvärde</FOutputField></div>
@@ -232,10 +264,24 @@ import { ref } from "vue"
 import { FTextField } from "@fkui/vue"
 const v = ref("")
 <\/script>`,
-  FTooltip: simpleTemplate("FTooltip"),
+  FTooltip: `<template>
+  <div style="padding:2rem">
+    <FTooltip screen-reader-text="Information"><template #default>Hovera här</template><template #content>Detta är en tooltip</template></FTooltip>
+  </div>
+</template>
+<script setup>
+import { FTooltip } from "@fkui/vue"
+<\/script>`,
   FValidationForm: simpleTemplate("FValidationForm"),
   FValidationGroup: simpleTemplate("FValidationGroup"),
-  FWizard: simpleTemplate("FWizard"),
+  FWizard: `<template>
+  <div style="padding:2rem">
+    <FWizard title="Guidat formulär" :steps="[{title:'Steg 1'},{title:'Steg 2'}]" />
+  </div>
+</template>
+<script setup>
+import { FWizard } from "@fkui/vue"
+<\/script>`,
 };
 
 // ─── Breakpoint counting ───────────────────────────────────────────────────
