@@ -143,7 +143,18 @@ import { FCheckboxField } from "@fkui/vue"
 const v = ref(false)
 <\/script>`,
   FContextMenu: simpleTemplate("FContextMenu"),
-  FCrudDataset: simpleTemplate("FCrudDataset"),
+  FCrudDataset: `<template>
+  <div style="padding:2rem">
+    <FCrudDataset v-model="items">
+      <template #add="{ item }"><FButton @click="items.push(item)">Lägg till</FButton></template>
+    </FCrudDataset>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FCrudDataset, FButton } from "@fkui/vue"
+const items = ref([{ name: "Exempel" }])
+<\/script>`,
   FDataTable: `<template>
   <div style="padding:2rem">
     <FDataTable :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]"><template #default><FTableColumn name="name" title="Namn" :sortable="true" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FDataTable>
