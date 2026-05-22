@@ -197,7 +197,7 @@ const d = ref("")
 <script setup>
 import { ref } from "vue"
 import { FDialogueTree } from "@fkui/vue"
-const tree = { label:"Vill du fortsätta?", options:[{ label:"Ja", question:{ label:"Bekräftelse", userData:{ val:"ja" } } },{ label:"Nej", question:{ label:"Avbryt", userData:{ val:"nej" } } }] }
+const tree = { label:"Vill du fortsätta?", options:[{ label:"Ja", question:{ label:"Bekräftelse", userData:"ja" } },{ label:"Nej", question:{ label:"Avbryt", userData:"nej" } }] }
 const progress = ref({})
 <\/script>`,
   FErrorList: simpleTemplate("FErrorList"),
