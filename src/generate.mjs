@@ -267,7 +267,18 @@ import { FFileItem } from "@fkui/vue"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 <\/script>`,
-  FFileSelector: simpleTemplate("FFileSelector"),
+  FFileSelector: `<template>
+  <div style="padding:2rem;max-width:600px">
+    <FFileSelector @change="onFile">Välj fil</FFileSelector>
+    <p v-if="file" style="margin-top:1rem">Vald fil: {{ file }}</p>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { FFileSelector } from "@fkui/vue"
+const file = ref("")
+function onFile(e) { file.value = e[0]?.name || "" }
+<\/script>`,
   FFixedPane: simpleTemplate("FFixedPane"),
   FIcon: `<template>
   <div style="padding:2rem">
