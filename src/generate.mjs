@@ -500,28 +500,63 @@ onMounted(() => {
 <\/script>`,
   FInteractiveTable: `<template>
   <div style="padding:2rem">
-    <FInteractiveTable :rows="people" key-attribute="id">
-      <template #caption><b>Personer</b></template>
-      <template #default="{ row }">
-        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
-        <FTableColumn title="Ålder" type="numeric">{{ row.age }}</FTableColumn>
-        <FTableColumn title="Stad" type="text">{{ row.city }}</FTableColumn>
+    <FSortFilterDataset :data="rows" :sortable-attributes="sortableAttributes">
+      <template #header>
+        <FButton variant="tertiary" icon-left="trashcan" size="small" @click="onRemoveSelectedRows">
+          Ta bort valda frukter
+        </FButton>
       </template>
-    </FInteractiveTable>
+      <template #default="{ sortFilterResult }">
+        <FTable v-model:selected-rows="valdaRader" :rows="sortFilterResult" :columns="columns" striped selectable="multi">
+          <template #caption><span class="sr-only">Fruktexempel</span></template>
+        </FTable>
+      </template>
+    </FSortFilterDataset>
   </div>
 </template>
 <script setup>
 import { ref, onMounted, getCurrentInstance } from "vue"
-import { FInteractiveTable, FTableColumn } from "@fkui/vue"
+import { FSortFilterDataset, FButton, FTable, defineTableColumns, useDatasetRef, useModal, removeDatasetRows } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
-const people = ref([
-  { id: "1", name: "Anna", age: 30, city: "Stockholm" },
-  { id: "2", name: "Erik", age: 25, city: "Göteborg" },
-  { id: "3", name: "Sara", age: 28, city: "Malmö" },
+const lander = ["", "Colombia", "Costa Rica", "Dominikanska republiken", "Ecuador", "Frankrike", "Italien", "Spanien", "Sverige", "Sydafrika"]
+const columns = defineTableColumns([
+  { type: "text", header: "Frukt", key: "namn" },
+  { type: "select", options: lander, header: "Land", label: () => "Val av land", key: "land" },
+  { type: "text:currency", header: "Pris", key: "pris" },
+  { type: "text", editable: true, label: (row) => "Kommentar till " + row.namn, header: "Kommentar", key: "kommentar" },
 ])
+const rows = useDatasetRef([
+  { namn: "Apelsin", land: "", kommentar: "", sorter: [
+    { namn: "Navelina", land: "Spanien", pris: 28.73 },
+    { namn: "Navel (Navels)", land: "Spanien", pris: 18 },
+    { namn: "Tarocco (Blodapelsin)", land: "Italien", pris: 35 },
+    { namn: "Valencia (Juiceapelsin)", land: "Sydafrika", pris: 22 },
+  ]},
+  { namn: "Äpple", land: "", kommentar: "Säsongsvariationer förekommer", sorter: [
+    { namn: "Ingrid Marie", land: "Sverige", pris: 29.9 },
+    { namn: "Aroma", land: "Sverige", pris: 32.5 },
+    { namn: "Royal Gala", land: "Italien", pris: 24.95 },
+    { namn: "Granny Smith", land: "Frankrike", pris: 28 },
+    { namn: "Pink Lady", land: "Italien", pris: 42 },
+  ]},
+  { namn: "Banan", land: "", kommentar: "Säljs oftast per kilo", sorter: [
+    { namn: "Cavendish", land: "Ecuador", pris: 21.9 },
+    { namn: "Ekologiska Bananer", land: "Dominikanska republiken", pris: 28.5 },
+    { namn: "Fairtrade Bananer", land: "Colombia", pris: 26 },
+    { namn: "Babybanan", land: "Ecuador", pris: 45 },
+  ]},
+], "sorter")
+const sortableAttributes = { namn: "Frukt" }
+const valdaRader = ref([])
+const { confirmModal } = useModal()
+async function onRemoveSelectedRows() {
+  if (valdaRader.value.length === 0) return
+  const confirmed = await confirmModal({ heading: "Ta bort frukt(er)", content: "Är du säker att du vill ta bort valda frukt(er)?", confirm: "Ja, ta bort", dismiss: "Nej, behåll" })
+  if (confirmed) removeDatasetRows(rows, valdaRader)
+}
 <\/script>`,
   FLabel: `<template>
   <div style="padding:2rem;max-width:400px">
