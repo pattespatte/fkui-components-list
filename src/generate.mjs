@@ -181,15 +181,46 @@ const items = [{ key:"edit", label:"Redigera" },{ key:"copy", label:"Kopiera" }]
 <\/script>`,
   FCrudDataset: `<template>
   <div style="padding:2rem">
-    <FCrudDataset v-model="items">
-      <template #add="{ item }"><FButton @click="items.push(item)">Lägg till</FButton></template>
+    <FCrudDataset v-model="fruits" @created="save" @updated="save" @deleted="save">
+      <template #default="{ updateItem, deleteItem }">
+        <FInteractiveTable :rows="fruits" key-attribute="id">
+          <template #caption><b>Frukter</b></template>
+          <template #default="{ row }">
+            <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+            <FTableColumn title="Land" type="text" shrink>{{ row.origin }}</FTableColumn>
+            <FTableColumn title="Åtgärd" type="action" shrink>
+              <FTableButton icon="pen" @click="updateItem(row)">Ändra</FTableButton>
+              <FTableButton icon="trashcan" @click="deleteItem(row)">Ta bort</FTableButton>
+            </FTableColumn>
+          </template>
+        </FInteractiveTable>
+      </template>
+      <template #modify="{ item }">
+        <FTextField v-model="item.name" type="text">Namn</FTextField>
+        <FTextField v-model="item.origin" type="text">Land</FTextField>
+      </template>
+      <template #add="{ item }">
+        <FTextField v-model="item.id" type="text">ID</FTextField>
+        <FTextField v-model="item.name" type="text">Namn</FTextField>
+        <FTextField v-model="item.origin" type="text">Land</FTextField>
+      </template>
+      <template #delete="{ item }">
+        Vill du verkligen radera "{{ item.name }}"?
+      </template>
     </FCrudDataset>
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
-import { FCrudDataset, FButton } from "@fkui/vue"
-const items = ref([{ name: "Exempel" }])
+import { ref, onMounted } from "vue"
+import { FCrudDataset, FInteractiveTable, FTableButton, FTableColumn, FTextField } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const fruits = ref([
+  { id: "1", name: "Äpple", origin: "Sverige" },
+  { id: "2", name: "Banan", origin: "Colombia" },
+  { id: "3", name: "Citron", origin: "Spanien" },
+])
+function save(row) { console.log("Saved:", row) }
 <\/script>`,
   FDataTable: `<template>
   <div style="padding:2rem">
