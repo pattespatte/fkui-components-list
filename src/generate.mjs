@@ -224,11 +224,24 @@ function save(row) { console.log("Saved:", row) }
 <\/script>`,
   FDataTable: `<template>
   <div style="padding:2rem">
-    <FDataTable :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]"><template #default><FTableColumn name="name" title="Namn" :sortable="true" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FDataTable>
+    <FDataTable :rows="people" key-attribute="id">
+      <template #caption><b>Personer</b></template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumn title="Ålder" type="numeric">{{ row.age }}</FTableColumn>
+        <FTableColumn title="Stad" type="text">{{ row.city }}</FTableColumn>
+      </template>
+    </FDataTable>
   </div>
 </template>
 <script setup>
+import { ref } from "vue"
 import { FDataTable, FTableColumn } from "@fkui/vue"
+const people = ref([
+  { id: "1", name: "Anna", age: 30, city: "Stockholm" },
+  { id: "2", name: "Erik", age: 25, city: "Göteborg" },
+  { id: "3", name: "Sara", age: 28, city: "Malmö" },
+])
 <\/script>`,
   FDatepickerField: `<template>
   <div style="padding:2rem"><FDatepickerField v-model="d"><template #default>Välj datum</template></FDatepickerField></div>
@@ -385,11 +398,24 @@ import { FIcon } from "@fkui/vue"
 <\/script>`,
   FInteractiveTable: `<template>
   <div style="padding:2rem">
-    <FInteractiveTable :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]"><template #default><FTableColumn name="name" title="Namn" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FInteractiveTable>
+    <FInteractiveTable :rows="people" key-attribute="id">
+      <template #caption><b>Personer</b></template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumn title="Ålder" type="numeric">{{ row.age }}</FTableColumn>
+        <FTableColumn title="Stad" type="text">{{ row.city }}</FTableColumn>
+      </template>
+    </FInteractiveTable>
   </div>
 </template>
 <script setup>
+import { ref } from "vue"
 import { FInteractiveTable, FTableColumn } from "@fkui/vue"
+const people = ref([
+  { id: "1", name: "Anna", age: 30, city: "Stockholm" },
+  { id: "2", name: "Erik", age: 25, city: "Göteborg" },
+  { id: "3", name: "Sara", age: 28, city: "Malmö" },
+])
 <\/script>`,
   FLabel: `<template>
   <div style="padding:2rem;max-width:400px">
