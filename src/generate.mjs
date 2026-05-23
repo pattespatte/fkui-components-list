@@ -472,16 +472,31 @@ import { FFixedPane } from "@fkui/vue"
 <\/script>`,
   FIcon: `<template>
   <div style="padding:2rem">
-    <FIcon name="hamburger" />
+    <div v-for="lib in libraries" :key="lib.name" style="margin-bottom:1.5rem">
+      <h4>{{ lib.name }} ({{ lib.icons.length }})</h4>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center">
+        <div v-for="icon in lib.icons" :key="icon" style="text-align:center;width:60px">
+          <FIcon :name="icon" :library="lib.name" />
+          <div style="font-size:10px;margin-top:2px;word-break:break-all">{{ icon }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script setup>
-import { onMounted, getCurrentInstance } from "vue"
+import { onMounted, getCurrentInstance, ref } from "vue"
 import { FIcon } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
-onMounted(() => { iconLib.f.injectSpritesheet() })
+const libraries = ref([])
+function decamelize(v) { return v.replaceAll(/([A-Z])/g, (_, c) => "-" + c.toLowerCase()) }
+onMounted(() => {
+  Object.values(iconLib).forEach(e => { if (e.injectSpritesheet) e.injectSpritesheet() })
+  libraries.value = Object.entries(iconLib)
+    .filter(([_, e]) => e.metadata)
+    .map(([n, e]) => ({ name: decamelize(n), icons: e.metadata.map(i => i.name) }))
+})
 <\/script>`,
   FInteractiveTable: `<template>
   <div style="padding:2rem">
