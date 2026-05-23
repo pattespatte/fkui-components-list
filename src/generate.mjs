@@ -132,9 +132,11 @@ import { FButton } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FCalendar } from "@fkui/vue"
 import { FDate } from "@fkui/date"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const date = ref(FDate.fromIso("2025-01-15"))
 const minDate = ref(FDate.fromIso("2025-01-01"))
 const maxDate = ref(FDate.fromIso("2025-12-31"))
@@ -675,6 +677,7 @@ function makeUrl(template) {
         "@fkui/vue": `https://esm.sh/@fkui/vue@${FKUI_VERSION}?external=vue`,
         "@fkui/date": `https://esm.sh/@fkui/date@${FKUI_VERSION}?external=vue`,
         "@fkui/logic": `https://esm.sh/@fkui/logic@${FKUI_VERSION}?external=vue`,
+        "@fkui/icon-lib-default": `https://esm.sh/@fkui/icon-lib-default@${FKUI_VERSION}`,
       },
     }),
   });
