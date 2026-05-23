@@ -614,12 +614,23 @@ onMounted(() => { iconLib.f.injectSpritesheet() })
 const selectedText = ref("")
 const selectedTitle = ref("")
 const items = [
-  { title: "Träutensilier", text: "Träutensilierna i ett tryckeri äro ingalunde en oviktig faktor, för trevnadens, ordningens och ekonomiens upprätthållande, och dock är det icke sällan som sorgliga erfarenheter göras på grund af det oförstånd med hvilket kaster, formbräden och regaler tillverkas och försäljas Kaster som äro dåligt hopkomna och af otillräckligt" },
-  { title: "Lorem ipsum", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+  { title: "Träutensilier", text: "Träutensilierna i ett tryckeri äro ingalunde en oviktig faktor, för trevnadens, ordningens och ekonomiens upprätthållande." },
+  { title: "Lorem ipsum", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." },
 ]
 function openPanel(item) { selectedTitle.value = item.title; selectedText.value = item.text; FLayoutRightPanelService.open() }
 function closePanel() { FLayoutRightPanelService.close() }
-<\/script>`,
+<\/script>
+<style>
+html, body { height: 100%; margin: 0; }
+.layout-application-template { height: 100vh; }
+.layout-navigation__navigation { max-width: 3rem; top: auto; overflow: hidden; }
+.layout-navigation__navigation__inner { padding: 0.5rem; }
+.layout-navigation__navigation__inner--minimized { padding: 0.5rem; }
+.layout-navigation__navigation__inner__title h3 { display: none; }
+.layout-navigation__navigation__inner__content { display: none; }
+.layout-secondary__secondary { max-width: 40%; }
+.layout-application-template__footer { margin-top: auto; }
+</style>`,
   FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
   FLayoutRightPanel: `<template>
   <FLayoutRightPanel>
