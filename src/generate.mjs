@@ -276,17 +276,16 @@ const defs = [
   <div style="padding:2rem">
     <FButton @click="openPanel">Öppna panel</FButton>
     <FDetailsPanel name="demo">
-      <template #default="{ close }">
-        <p>Detaljerat innehåll här.</p>
-        <FButton @click="close">Stäng</FButton>
+      <template #default="panelScope">
+        <h2 :slot="panelScope.header">Detaljpanel</h2>
+        <p :slot="panelScope.content">Detaljerat innehåll här.</p>
       </template>
     </FDetailsPanel>
   </div>
 </template>
 <script setup>
-import { FButton, FDetailsPanel } from "@fkui/vue"
-import { createDetailsPanel } from "@fkui/logic"
-const panel = createDetailsPanel("demo")
+import { FButton, FDetailsPanel, useDetailsPanel } from "@fkui/vue"
+const panel = useDetailsPanel("demo")
 function openPanel() { panel.open({}) }
 <\/script>`,
   FDialogueTree: `<template>
