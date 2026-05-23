@@ -88,6 +88,24 @@ const FKUI_GITHUB = "https://github.com/Forsakringskassan/designsystem/blob/e3bf
 
 // ─── SFC Templates ─────────────────────────────────────────────────────────
 
+// Common setup lines — $t mock and icon spritesheet injection
+const SETUP_I18N = `import { getCurrentInstance } from "vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback`;
+
+const SETUP_ICONS = `import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })`;
+
+function setupBlock(imports, { i18n = false, icons = false, extra = "" } = {}) {
+  const vueImports = ["vue", imports];
+  const lines = [];
+  lines.push(`import { ${vueImports.join(", ")} } from "@fkui/vue"`);
+  if (icons) lines.push(SETUP_ICONS);
+  if (i18n) lines.push(SETUP_I18N);
+  if (extra) lines.push(extra);
+  return lines.join("\n");
+}
+
 // Minimal templates — import component and render with basic props
 function simpleTemplate(name, ...imports) {
   const tag = name;
@@ -98,7 +116,12 @@ function simpleTemplate(name, ...imports) {
   </div>
 </template>
 <script setup>
+import { onMounted, getCurrentInstance } from "vue"
 import { ${importList} } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`;
 }
 
@@ -136,10 +159,12 @@ import { FButton } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FCalendar, FCalendarDay } from "@fkui/vue"
 import { FDate } from "@fkui/date"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const date = ref(FDate.fromIso("2027-01-15"))
 const minDate = ref(FDate.fromIso("2027-01-01"))
@@ -173,9 +198,11 @@ const v = ref(false)
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FContextMenu, FButton } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const btn = ref(null)
 const open = ref(false)
@@ -213,9 +240,11 @@ const items = [{ key:"edit", label:"Redigera" },{ key:"copy", label:"Kopiera" }]
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FCrudDataset, FInteractiveTable, FTableButton, FTableColumn, FTextField } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const fruits = ref([
   { id: "1", name: "Äpple", origin: "Sverige" },
@@ -237,8 +266,12 @@ function save(row) { console.log("Saved:", row) }
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FDataTable, FTableColumn } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const people = ref([
   { id: "1", name: "Anna", age: 30, city: "Stockholm" },
   { id: "2", name: "Erik", age: 25, city: "Göteborg" },
@@ -258,6 +291,7 @@ import { FDatepickerField, ValidationPlugin } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 const app = getCurrentInstance().appContext.app
 app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const d = ref("")
 <\/script>`,
@@ -286,7 +320,12 @@ const defs = [
   </div>
 </template>
 <script setup>
+import { onMounted, getCurrentInstance } from "vue"
 import { FButton, FDetailsPanel, useDetailsPanel } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const panel = useDetailsPanel("demo")
 function openPanel() { panel.open({}) }
 <\/script>`,
@@ -298,8 +337,12 @@ function openPanel() { panel.open({}) }
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FDialogueTree } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const tree = { label:"Vill du fortsätta?", options:[{ label:"Ja", question:{ label:"Bekräftelse", userData:"ja" } },{ label:"Nej", question:{ label:"Avbryt", userData:"nej" } }] }
 const progress = ref({})
 <\/script>`,
@@ -309,9 +352,11 @@ const progress = ref({})
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, getCurrentInstance } from "vue"
 import { FErrorList } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FExpand: `<template>
@@ -336,9 +381,11 @@ const show = ref(true)
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FExpandablePanel } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const open = ref(false)
 <\/script>`,
@@ -351,9 +398,11 @@ const open = ref(false)
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FExpandableParagraph } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const open = ref(false)
 <\/script>`,
@@ -369,8 +418,10 @@ const open = ref(false)
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, getCurrentInstance } from "vue"
 import { FFieldset, FCheckboxField } from "@fkui/vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 const checks = ref([])
 <\/script>`,
   FFileItem: `<template>
@@ -385,6 +436,7 @@ import iconLib from "@fkui/icon-lib-default"
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 <\/script>`,
   FFileSelector: `<template>
   <div style="padding:2rem;max-width:600px">
@@ -393,8 +445,12 @@ appContext.config.globalProperties.$t = (key, fallback) => fallback
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FFileSelector } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const file = ref("")
 function onFile(e) { file.value = e[0]?.name || "" }
 <\/script>`,
@@ -412,9 +468,11 @@ import { FFixedPane } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, getCurrentInstance } from "vue"
 import { FIcon } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FInteractiveTable: `<template>
@@ -430,8 +488,12 @@ onMounted(() => { iconLib.f.injectSpritesheet() })
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FInteractiveTable, FTableColumn } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const people = ref([
   { id: "1", name: "Anna", age: 30, city: "Stockholm" },
   { id: "2", name: "Erik", age: 25, city: "Göteborg" },
@@ -465,8 +527,13 @@ import { FLayoutApplicationTemplate } from "@fkui/vue"
   </FLayoutRightPanel>
 </template>
 <script setup>
+import { onMounted, getCurrentInstance } from "vue"
 import { FLayoutRightPanel, FButton } from "@fkui/vue"
 import { FLayoutRightPanelService } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 function open() { FLayoutRightPanelService.open() }
 <\/script>`,
   FList: `<template>
@@ -475,7 +542,10 @@ function open() { FLayoutRightPanelService.open() }
   </div>
 </template>
 <script setup>
+import { getCurrentInstance } from "vue"
 import { FList } from "@fkui/vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 const items = [{ id:1, name:"Äpple" },{ id:2, name:"Banan" },{ id:3, name:"Citron" }]
 <\/script>`,
   FLoader: `<template>
@@ -484,7 +554,10 @@ const items = [{ id:1, name:"Äpple" },{ id:2, name:"Banan" },{ id:3, name:"Citr
   </div>
 </template>
 <script setup>
+import { getCurrentInstance } from "vue"
 import { FLoader } from "@fkui/vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 <\/script>`,
   FLogo: `<template>
   <div style="padding:2rem">
@@ -500,9 +573,11 @@ import { FLogo } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, getCurrentInstance } from "vue"
 import { FMessageBox } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FMinimizablePanel: simpleTemplate("FMinimizablePanel"),
@@ -513,8 +588,12 @@ onMounted(() => { iconLib.f.injectSpritesheet() })
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FModal, FButton } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const open = ref(false)
 <\/script>`,
   FNavigationMenu: `<template>
@@ -523,7 +602,12 @@ const open = ref(false)
   </div>
 </template>
 <script setup>
+import { onMounted, getCurrentInstance } from "vue"
 import { FNavigationMenu } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FOffline: `<template>
   <div style="padding:2rem">
@@ -531,9 +615,11 @@ import { FNavigationMenu } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, getCurrentInstance } from "vue"
 import { FOffline } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FOutputField: `<template>
@@ -579,9 +665,11 @@ const items = [{id:1,name:"Anna"},{id:2,name:"Erik"},{id:3,name:"Sara"},{id:4,na
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FPaginator } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const page = ref(1)
 <\/script>`,
@@ -636,8 +724,12 @@ const v = ref("")
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FSortFilterDataset } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const data = ref([{ id:1, name:"Anna" },{ id:2, name:"Erik" },{ id:3, name:"Sara" }])
 <\/script>`,
   FStaticField: `<template>
@@ -654,7 +746,10 @@ import { FStaticField } from "@fkui/vue"
   </div>
 </template>
 <script setup>
+import { getCurrentInstance } from "vue"
 import { FTable } from "@fkui/vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 <\/script>`,
   FTableButton: `<template>
   <div style="padding:2rem">
@@ -733,9 +828,11 @@ const valid = ref(null)
   </div>
 </template>
 <script setup>
-import { onMounted } from "vue"
+import { onMounted, getCurrentInstance } from "vue"
 import { FWizard } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
 };
