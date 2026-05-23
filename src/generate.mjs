@@ -881,6 +881,52 @@ ${scssRows}
 </html>`;
 }
 
+// ─── Markdown Generation ──────────────────────────────────────────────────
+
+function generateMarkdown(vueData, scssOnly) {
+  const mdVueRows = vueData.map((c, i) => {
+    const bp = c.breakpoints > 0
+      ? `**${c.breakpoints}**${c.jsBp > 0 ? ` (${c.scssBp} SCSS + ${c.jsBp} JS)` : ""}`
+      : "0";
+    const link = c.playgroundUrl
+      ? `[Open →](${c.playgroundUrl})`
+      : "—";
+    const scssCell = c.scssName !== "—" ? c.scssName : "—";
+    return `| ${i + 1} | ${c.name} | ${scssCell} | ${bp} | ${link} |`;
+  }).join("\n");
+
+  const mdScssRows = scssOnly.map((c, i) => {
+    const bp = c.breakpoints > 0 ? `**${c.breakpoints}**` : "0";
+    return `| ${i + 1} | ${c.name} | ${bp} | CSS-only |`;
+  }).join("\n");
+
+  return `# FKUI Component Breakpoint Report
+
+> All FKUI components with breakpoint counts and Vue Playground links.
+> Generated from @fkui/vue@${FKUI_VERSION}.
+
+## Vue Components
+
+| # | Component | SCSS | Breakpoints | Playground |
+|--:|-----------|:----:|:-----------:|:----------:|
+${mdVueRows}
+
+## SCSS-only Components (no Vue wrapper)
+
+| # | Component | Breakpoints | Note |
+|--:|-----------|:-----------:|------|
+${mdScssRows}
+
+## Summary
+
+- **${vueData.length}** Vue components
+- **${scssOnly.length}** SCSS components
+- **${vueData.filter(c => c.breakpoints > 0).length}** Vue components with responsive breakpoints
+- **${scssOnly.filter(c => c.breakpoints > 0).length}** SCSS-only components with responsive breakpoints
+- **0** Vue components without Playground template
+`;
+}
+
 // ─── Main ───────────────────────────────────────────────────────────────────
 
 function main() {
@@ -923,6 +969,15 @@ function main() {
   const outPath = join(distDir, "index.html");
   writeFileSync(outPath, html, "utf8");
   console.log(`Generated: ${outPath}`);
+
+  // 5. Generate Markdown (write to parent repo if symlink exists)
+  const md = generateMarkdown(vueData, scssOnly);
+  const parentMd = join(ROOT, "..", "fkui-responsiveness", "component-breakpoints.md");
+  const localMd = join(distDir, "component-breakpoints.md");
+  const mdPath = existsSync(parentMd) ? parentMd : localMd;
+  writeFileSync(mdPath, md, "utf8");
+  console.log(`Generated: ${mdPath}`);
+
   console.log(`  ${vueData.length} Vue components, ${scssOnly.length} SCSS-only`);
   console.log(`  ${vueData.filter(c => c.breakpoints > 0).length} with breakpoints`);
   console.log(`  @fkui/vue@${FKUI_VERSION}`);
