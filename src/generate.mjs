@@ -251,12 +251,11 @@ const people = ref([
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue"
-import { FDatepickerField } from "@fkui/vue"
-import { FDate } from "@fkui/date"
-import { ValidationService, availableValidators } from "@fkui/logic"
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FDatepickerField, ValidationPlugin } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
-for (const v of availableValidators) { ValidationService.registerValidator(v) }
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
 onMounted(() => { iconLib.f.injectSpritesheet() })
 const d = ref("")
 <\/script>`,
@@ -749,9 +748,9 @@ function makeUrl(template) {
     "import-map.json": JSON.stringify({
       imports: {
         "vue": "https://play.vuejs.org/vue.runtime.esm-browser.js",
-        "@fkui/vue": `https://esm.sh/@fkui/vue@${FKUI_VERSION}?external=vue`,
+        "@fkui/vue": `https://esm.sh/@fkui/vue@${FKUI_VERSION}?external=vue,@fkui/logic,@fkui/date`,
         "@fkui/date": `https://esm.sh/@fkui/date@${FKUI_VERSION}?external=vue`,
-        "@fkui/logic": `https://esm.sh/@fkui/logic@${FKUI_VERSION}?external=vue`,
+        "@fkui/logic": `https://esm.sh/@fkui/logic@${FKUI_VERSION}?external=vue,@fkui/date`,
         "@fkui/icon-lib-default": `https://esm.sh/@fkui/icon-lib-default@${FKUI_VERSION}`,
       },
     }),
