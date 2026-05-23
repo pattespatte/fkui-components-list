@@ -698,7 +698,35 @@ const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
-  FMinimizablePanel: simpleTemplate("FMinimizablePanel"),
+  FMinimizablePanel: `<template>
+  <FPageLayout layout="three-column">
+    <template #default="layoutScope">
+      <FResizePane :slot="layoutScope.left" min="150px" max="40%" initial="600px">
+        <FMinimizablePanel>
+          <template #default="panelScope">
+            <template v-if="panelScope.isOpen">
+              <h1 :slot="panelScope.header" style="background:#e5e5f5;padding:0.5rem 1rem;margin:0">Rubrik</h1>
+              <p :slot="panelScope.content" style="padding:1rem">Innehåll</p>
+              <div :slot="panelScope.footer" style="background:#f4f4f4;padding:0.5rem 1rem;border-top:1px solid #ccc">Fot</div>
+            </template>
+          </template>
+        </FMinimizablePanel>
+      </FResizePane>
+      <div :slot="layoutScope.content" style="padding:2rem;background:#fff">
+        <h2>Applikationsyta</h2>
+        <p>Här visas huvudinnehållet.</p>
+      </div>
+    </template>
+  </FPageLayout>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FMinimizablePanel, FPageLayout, FResizePane } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+<\/script>`,
   FModal: `<template>
   <div style="padding:2rem">
     <FButton @click="open=true">Öppna modal</FButton>
