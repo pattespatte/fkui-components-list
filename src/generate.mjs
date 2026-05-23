@@ -344,8 +344,10 @@ const open = ref(false)
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FExpandableParagraph } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const open = ref(false)
 <\/script>`,
   FFieldset: `<template>
