@@ -244,11 +244,20 @@ const people = ref([
 ])
 <\/script>`,
   FDatepickerField: `<template>
-  <div style="padding:2rem"><FDatepickerField v-model="d"><template #default>Välj datum</template></FDatepickerField></div>
+  <div style="padding:2rem;max-width:400px">
+    <FDatepickerField v-model="d">
+      <template #default>Välj datum</template>
+    </FDatepickerField>
+  </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FDatepickerField } from "@fkui/vue"
+import { FDate } from "@fkui/date"
+import { ValidationService, availableValidators } from "@fkui/logic"
+import iconLib from "@fkui/icon-lib-default"
+for (const v of availableValidators) { ValidationService.registerValidator(v) }
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const d = ref("")
 <\/script>`,
   FDefinitionList: `<template>
