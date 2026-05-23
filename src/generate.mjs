@@ -128,18 +128,22 @@ import { FButton } from "@fkui/vue"
 <\/script>`,
   FCalendar: `<template>
   <div style="padding:2rem">
-    <FCalendar v-model="date" :min-date="minDate" :max-date="maxDate" />
+    <FCalendar v-model="date" :min-date="minDate" :max-date="maxDate">
+      <template #default="{ date: day }">
+        <FCalendarDay :day="day" />
+      </template>
+    </FCalendar>
   </div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue"
-import { FCalendar } from "@fkui/vue"
+import { FCalendar, FCalendarDay } from "@fkui/vue"
 import { FDate } from "@fkui/date"
 import iconLib from "@fkui/icon-lib-default"
 onMounted(() => { iconLib.f.injectSpritesheet() })
-const date = ref(FDate.fromIso("2025-01-15"))
-const minDate = ref(FDate.fromIso("2025-01-01"))
-const maxDate = ref(FDate.fromIso("2025-12-31"))
+const date = ref(FDate.fromIso("2027-01-15"))
+const minDate = ref(FDate.fromIso("2027-01-01"))
+const maxDate = ref(FDate.fromIso("2027-12-31"))
 <\/script>`,
   FCard: `<template>
   <div style="padding:2rem;max-width:600px">
