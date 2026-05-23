@@ -348,16 +348,24 @@ const progress = ref({})
 <\/script>`,
   FErrorList: `<template>
   <div style="padding:2rem;max-width:600px">
-    <FErrorList :items="[{title:'Namn är obligatoriskt'},{title:'Ogiltig e-postadress',id:'email'}]" />
+    <FErrorList :items="items">
+      <template #title>Kolla på felen nedan</template>
+    </FErrorList>
+    <FTextField id="fornamn">Förnamn</FTextField>
+    <FTextField id="efternamn">Efternamn</FTextField>
   </div>
 </template>
 <script setup>
-import { onMounted, getCurrentInstance } from "vue"
-import { FErrorList } from "@fkui/vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FErrorList, FTextField } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
+const items = ref([
+  { id: "fornamn", title: "Förnamn" },
+  { id: "efternamn", title: "Efternamn" },
+])
 <\/script>`,
   FExpand: `<template>
   <div style="padding:2rem">
