@@ -670,13 +670,21 @@ const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 <\/script>`,
   FLogo: `<template>
-  <div style="padding:2rem">
+  <div style="padding:2rem;background:#f4f4f4">
     <FLogo>Försäkringskassan</FLogo>
   </div>
 </template>
 <script setup>
 import { FLogo } from "@fkui/vue"
-<\/script>`,
+<\/script>
+<style>
+:root {
+  --f-logo-image-small: url("data:image/svg+xml,%3Csvg id='Lager_1' data-name='Lager 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 47.74 53.27'%3E%3Cdefs%3E%3Cstyle%3E.cls-1{fill:none;stroke:%23005aad;stroke-width:0.59px;}.cls-2{fill:%23005aad;}%3C/style%3E%3C/defs%3E%3Cg id='Lager_1-2' data-name='Lager 1'%3E%3Cpath class='cls-1' d='M47.16,44.81a2.33,2.33,0,0,1-2.34,2.35H2.64A2.34,2.34,0,0,1,.3,44.81V2.64A2.34,2.34,0,0,1,2.64.3H44.82a2.34,2.34,0,0,1,2.34,2.34V44.81Z'/%3E%3Cpath class='cls-2' d='M19.7,19a.77.77,0,0,0-.77.78v11a2.09,2.09,0,0,0,.55,1.33L30.9,43.49a2.2,2.2,0,0,0,1.35.56h11a.8.8,0,0,0,.79-.78V32.33A2.12,2.12,0,0,0,43.45,31L32,19.58A2.17,2.17,0,0,0,30.68,19Z'/%3E%3Cpath class='cls-2' d='M4.15,3.4a.79.79,0,0,0-.78.78V43.27c0,.44.25.54.55.22L15.25,32.1a2.17,2.17,0,0,0,.54-1.34V16.67a.79.79,0,0,1,.79-.78h14.1A2.2,2.2,0,0,0,32,15.34L43.44,4c.31-.3.2-.54-.23-.54H4.15Z'/%3E%3C/g%3E%3C/svg%3E");
+  --f-logo-image-large: url("data:image/svg+xml,%3Csvg id='Lager_1' data-name='Lager 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 47.74 53.27'%3E%3Cdefs%3E%3Cstyle%3E.cls-1{fill:none;stroke:%23005aad;stroke-width:0.59px;}.cls-2{fill:%23005aad;}%3C/style%3E%3C/defs%3E%3Cg id='Lager_1-2' data-name='Lager 1'%3E%3Cpath class='cls-1' d='M47.16,44.81a2.33,2.33,0,0,1-2.34,2.35H2.64A2.34,2.34,0,0,1,.3,44.81V2.64A2.34,2.34,0,0,1,2.64.3H44.82a2.34,2.34,0,0,1,2.34,2.34V44.81Z'/%3E%3Cpath class='cls-2' d='M19.7,19a.77.77,0,0,0-.77.78v11a2.09,2.09,0,0,0,.55,1.33L30.9,43.49a2.2,2.2,0,0,0,1.35.56h11a.8.8,0,0,0,.79-.78V32.33A2.12,2.12,0,0,0,43.45,31L32,19.58A2.17,2.17,0,0,0,30.68,19Z'/%3E%3Cpath class='cls-2' d='M4.15,3.4a.79.79,0,0,0-.78.78V43.27c0,.44.25.54.55.22L15.25,32.1a2.17,2.17,0,0,0,.54-1.34V16.67a.79.79,0,0,1,.79-.78h14.1A2.2,2.2,0,0,0,32,15.34L43.44,4c.31-.3.2-.54-.23-.54H4.15Z'/%3E%3C/g%3E%3C/svg%3E");
+  --f-logo-size-small: 0.6rem;
+  --f-logo-size-large: 0.6rem 4rem;
+}
+</style>`,
   FMessageBox: `<template>
   <div style="padding:2rem;max-width:600px">
     <FMessageBox type="info"><template #default="{ headingSlotClass }"><h2 :class="headingSlotClass">Informationsmeddelande</h2><p>Detta är ett exempel på en meddelanderuta.</p></template></FMessageBox>
