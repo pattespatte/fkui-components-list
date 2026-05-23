@@ -837,10 +837,15 @@ import { FOutputField } from "@fkui/vue"
 import { FPageHeader } from "@fkui/vue"
 <\/script>`,
   FPageLayout: `<template>
-  <FPageLayout layout="simple">
-    <template #header><div style="padding:0.5rem 1rem;background:#0066cc;color:white">Rubrik</div></template>
-    <template #content><div style="padding:2rem">Sidinnehåll</div></template>
-  </FPageLayout>
+  <f-page-layout layout="three-column">
+    <template #default="{ header, left, right, content, footer }">
+      <header :slot="header" style="background:darkred;color:white;padding:1rem">[header]</header>
+      <div :slot="left" style="background:greenyellow;padding:1rem;flex-grow:1;width:25cqw">[left]</div>
+      <div :slot="right" style="background:hotpink;padding:1rem;flex-grow:1;width:25cqw">[right]</div>
+      <main :slot="content" style="flex-grow:1;padding:1rem">[main]</main>
+      <footer :slot="footer" style="background:cyan;color:black;padding:1rem">[footer]</footer>
+    </template>
+  </f-page-layout>
 </template>
 <script setup>
 import { FPageLayout } from "@fkui/vue"
