@@ -789,19 +789,36 @@ const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
-  FOffline: `<template>
+  FOffline: `<script lang="ts">
+import { defineComponent } from "vue"
+import { FButton, FOffline } from "@fkui/vue"
+export default defineComponent({
+  components: { FButton, FOffline },
+  data() {
+    return {
+      isPushed: false,
+      offlineMessage: "Det verkar som att du inte har någon internetuppkoppling just nu. Tänk på att du behöver uppkoppling för att kunna signera",
+    }
+  },
+  methods: {
+    toggle() {
+      if (this.isPushed) {
+        window.dispatchEvent(new Event("online"))
+        this.isPushed = false
+      } else {
+        window.dispatchEvent(new Event("offline"))
+        this.isPushed = true
+      }
+    },
+  },
+})
+<\/script>
+<template>
   <div style="padding:2rem">
-    <FOffline><template #default>Du verkar inte ha någon internetuppkoppling.</template></FOffline>
+    <f-offline> {{ offlineMessage }} </f-offline>
+    <f-button @click="toggle">Visa/Dölj komponent</f-button>
   </div>
-</template>
-<script setup>
-import { onMounted, getCurrentInstance } from "vue"
-import { FOffline } from "@fkui/vue"
-import iconLib from "@fkui/icon-lib-default"
-const { appContext } = getCurrentInstance()
-appContext.config.globalProperties.$t = (key, fallback) => fallback
-onMounted(() => { iconLib.f.injectSpritesheet() })
-<\/script>`,
+</template>`,
   FOutputField: `<template>
   <div style="padding:2rem;max-width:400px"><FOutputField>Exempelvärde</FOutputField></div>
 </template>
