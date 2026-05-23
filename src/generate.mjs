@@ -628,7 +628,38 @@ html, body { height: 100%; margin: 0; overflow: hidden; }
 .layout-navigation__navigation[aria-expanded="false"] ~ #layout-navigation__primary { margin-left: 2.5rem !important; }
 .layout-secondary__secondary { max-width: 40%; }
 </style>`,
-  FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
+  FLayoutLeftPanel: `<template>
+  <FPageLayout layout="three-column">
+    <template #default="layoutScope">
+      <FResizePane :slot="layoutScope.left" min="150px" max="40%" initial="250px">
+        <FLayoutLeftPanel>
+          <template #heading><h3>Meny</h3></template>
+          <template #content>
+            <ul style="list-style:none;padding:0">
+              <li style="padding:0.25rem 0"><a href="#">Länk 1</a></li>
+              <li style="padding:0.25rem 0"><a href="#">Länk 2</a></li>
+              <li style="padding:0.25rem 0"><a href="#">Länk 3</a></li>
+            </ul>
+          </template>
+          <template #default>
+            <div style="padding:2rem">
+              <h2>Huvudinnehåll</h2>
+              <p>Här visas sidans innehåll.</p>
+            </div>
+          </template>
+        </FLayoutLeftPanel>
+      </FResizePane>
+    </template>
+  </FPageLayout>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FLayoutLeftPanel, FPageLayout, FResizePane } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+<\/script>`,
   FLayoutRightPanel: `<template>
   <FLayoutRightPanel>
     <template #default><div style="padding:2rem"><p>Huvudinnehåll</p><FButton @click="open">Öppna panel</FButton></div></template>
