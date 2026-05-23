@@ -900,7 +900,7 @@ function generateHTML(vueData, scssOnly) {
       ? `<strong>${c.breakpoints}</strong>${c.jsBp > 0 ? ` <small>(${c.scssBp} SCSS + ${c.jsBp} JS)</small>` : ""}`
       : "0";
     const link = c.playgroundUrl
-      ? `<a href="${c.playgroundUrl}" target="_blank" rel="noopener">Open →</a>`
+      ? `<a href="${c.playgroundUrl}" target="_blank" rel="noopener" title="Live demo for ${c.name}">Live demo →</a>`
       : "—";
     const scssCell = c.scssName !== "—"
       ? `<a href="${FKUI_GITHUB}/design/src/components/${c.scssName}/_${c.scssName}.scss" target="_blank" rel="noopener">${c.scssName}</a>`
@@ -1023,7 +1023,7 @@ function generateMarkdown(vueData, scssOnly) {
       ? `**${c.breakpoints}**${c.jsBp > 0 ? ` (${c.scssBp} SCSS + ${c.jsBp} JS)` : ""}`
       : "0";
     const link = c.playgroundUrl
-      ? `[Open →](${c.playgroundUrl})`
+      ? `[Live demo →](${c.playgroundUrl})`
       : "—";
     const scssCell = c.scssName !== "—" ? c.scssName : "—";
     return `| ${i + 1} | ${c.name} | ${scssCell} | ${bp} | ${link} |`;
