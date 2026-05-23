@@ -569,12 +569,56 @@ import { FLabel } from "@fkui/vue"
 <\/script>`,
   FLayoutApplicationTemplate: `<template>
   <FLayoutApplicationTemplate>
-    <template #header><div style="padding:0.5rem 1rem;background:#0066cc;color:white">Rubrik</div></template>
-    <template #default><div style="padding:2rem">Huvudinnehåll</div></template>
+    <template #header>
+      <div style="background-color:green;color:white"><a href="#">[sidhuvud]</a></div>
+    </template>
+    <template #top-navigation>
+      <div style="background-color:lightgray"><a href="#">[toppnavigering]</a></div>
+    </template>
+    <FLayoutLeftPanel>
+      <template #heading><h3>Navigationstitel</h3></template>
+      <template #content>[content]</template>
+      <template #default>
+        <FLayoutRightPanel>
+          <template #heading><h3>{{ selectedTitle }}</h3></template>
+          <template #content>
+            <p>{{ selectedText }}</p>
+            <FButton @click="closePanel()">Stäng</FButton>
+          </template>
+          <template #default>
+            <div style="padding:2rem">
+              <h1>Primäryta</h1>
+              <p>Klicka nedan för att se mer i sekundärpanelen.</p>
+              <ul>
+                <li v-for="item in items" :key="item.title">
+                  <a href="javascript:void(0)" @click="openPanel(item)">{{ item.title }}</a>
+                </li>
+              </ul>
+            </div>
+          </template>
+        </FLayoutRightPanel>
+      </template>
+    </FLayoutLeftPanel>
+    <template #footer>
+      <div style="background-color:green;color:white;text-align:center"><a href="#">[sidfot]</a></div>
+    </template>
   </FLayoutApplicationTemplate>
 </template>
 <script setup>
-import { FLayoutApplicationTemplate } from "@fkui/vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FLayoutApplicationTemplate, FLayoutLeftPanel, FLayoutRightPanel, FLayoutRightPanelService, FButton } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const selectedText = ref("")
+const selectedTitle = ref("")
+const items = [
+  { title: "Träutensilier", text: "Träutensilierna i ett tryckeri äro ingalunde en oviktig faktor, för trevnadens, ordningens och ekonomiens upprätthållande, och dock är det icke sällan som sorgliga erfarenheter göras på grund af det oförstånd med hvilket kaster, formbräden och regaler tillverkas och försäljas Kaster som äro dåligt hopkomna och af otillräckligt" },
+  { title: "Lorem ipsum", text: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
+]
+function openPanel(item) { selectedTitle.value = item.title; selectedText.value = item.text; FLayoutRightPanelService.open() }
+function closePanel() { FLayoutRightPanelService.close() }
 <\/script>`,
   FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
   FLayoutRightPanel: `<template>
