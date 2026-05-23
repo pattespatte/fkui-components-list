@@ -761,7 +761,10 @@ onMounted(() => { iconLib.f.injectSpritesheet() })
   FModal: `<template>
   <div style="padding:2rem">
     <FButton @click="open=true">Öppna modal</FButton>
-    <FModal :open="open" @close="open=false"><template #header>Modal</template><template #default>Innehåll</template></FModal>
+    <FModal :is-open="open" @close="open=false">
+      <template #header>Modal</template>
+      <template #content><p>Innehåll</p></template>
+    </FModal>
   </div>
 </template>
 <script setup>
