@@ -852,18 +852,21 @@ import { FPageLayout } from "@fkui/vue"
 <\/script>`,
   FPaginateDataset: `<template>
   <div style="padding:2rem">
-    <FPaginateDataset v-model="page" :items="items" :items-per-page="3">
-      <template #default="{ items: rows, currentPage, numberOfPages }">
-        <div v-for="item in rows" :key="item.id" style="padding:0.25rem 0">{{ item.name }}</div>
-        <p style="margin-top:1rem">Sida {{ currentPage }} av {{ numberOfPages }}</p>
+    <FPaginateDataset :items="items" :itemsPerPage="3">
+      <template #default="{ items: currentPageItems }">
+        <FList :items="currentPageItems" key-attribute="id">
+          <template #default="{ item }"><h6>{{ item.name }} ({{ item.id }})</h6></template>
+        </FList>
+        <FPaginator navigator-label="Navigate between persons" />
       </template>
     </FPaginateDataset>
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
-import { FPaginateDataset } from "@fkui/vue"
-const page = ref(1)
+import { ref, getCurrentInstance } from "vue"
+import { FPaginateDataset, FPaginator, FList } from "@fkui/vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
 const items = [{id:1,name:"Anna"},{id:2,name:"Erik"},{id:3,name:"Sara"},{id:4,name:"Olof"},{id:5,name:"Karin"},{id:6,name:"Nils"}]
 <\/script>`,
   FPaginator: `<template>
