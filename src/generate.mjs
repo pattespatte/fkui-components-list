@@ -863,10 +863,12 @@ import { FPageLayout } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { ref, getCurrentInstance } from "vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
 import { FPaginateDataset, FPaginator, FList } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const items = [{id:1,name:"Anna"},{id:2,name:"Erik"},{id:3,name:"Sara"},{id:4,name:"Olof"},{id:5,name:"Karin"},{id:6,name:"Nils"}]
 <\/script>`,
   FPaginator: `<template>
