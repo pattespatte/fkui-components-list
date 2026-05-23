@@ -173,8 +173,10 @@ const v = ref(false)
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FContextMenu, FButton } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const btn = ref(null)
 const open = ref(false)
 const items = [{ key:"edit", label:"Redigera" },{ key:"copy", label:"Kopiera" }]
@@ -307,7 +309,10 @@ const progress = ref({})
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
 import { FErrorList } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FExpand: `<template>
   <div style="padding:2rem">
@@ -331,8 +336,10 @@ const show = ref(true)
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FExpandablePanel } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const open = ref(false)
 <\/script>`,
   FExpandableParagraph: `<template>
@@ -372,8 +379,10 @@ const checks = ref([])
   </div>
 </template>
 <script setup>
-import { getCurrentInstance } from "vue"
+import { getCurrentInstance, onMounted } from "vue"
 import { FFileItem } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 <\/script>`,
@@ -403,7 +412,10 @@ import { FFixedPane } from "@fkui/vue"
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
 import { FIcon } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FInteractiveTable: `<template>
   <div style="padding:2rem">
@@ -488,7 +500,10 @@ import { FLogo } from "@fkui/vue"
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
 import { FMessageBox } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FMinimizablePanel: simpleTemplate("FMinimizablePanel"),
   FModal: `<template>
@@ -516,7 +531,10 @@ import { FNavigationMenu } from "@fkui/vue"
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
 import { FOffline } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FOutputField: `<template>
   <div style="padding:2rem;max-width:400px"><FOutputField>Exempelvärde</FOutputField></div>
@@ -561,8 +579,10 @@ const items = [{id:1,name:"Anna"},{id:2,name:"Erik"},{id:3,name:"Sara"},{id:4,na
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FPaginator } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const page = ref(1)
 <\/script>`,
   FProgressbar: `<template>
@@ -600,8 +620,10 @@ import { FResizePane } from "@fkui/vue"
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
+import { ref, onMounted } from "vue"
 import { FSelectField } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 const v = ref("")
 <\/script>`,
   FSortFilterDataset: `<template>
@@ -672,7 +694,10 @@ const v = ref("")
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
 import { FTooltip } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
   FValidationForm: `<template>
   <div style="padding:2rem;max-width:400px">
@@ -708,7 +733,10 @@ const valid = ref(null)
   </div>
 </template>
 <script setup>
+import { onMounted } from "vue"
 import { FWizard } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
 };
 
