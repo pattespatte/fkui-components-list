@@ -147,7 +147,12 @@ const maxDate = ref(FDate.fromIso("2027-12-31"))
 <\/script>`,
   FCard: `<template>
   <div style="padding:2rem;max-width:600px">
-    <FCard heading-tag="h2"><template #header>Rubrik</template><template #default>Innehåll</template></FCard>
+    <FCard>
+      <template #header="{ headingSlotClass }">
+        <h3 :class="headingSlotClass">Rubrik</h3>
+      </template>
+      <template #default>Innehåll</template>
+    </FCard>
   </div>
 </template>
 <script setup>
