@@ -575,7 +575,7 @@ import { FLabel } from "@fkui/vue"
     <template #top-navigation>
       <div style="background-color:lightgray"><a href="#">[toppnavigering]</a></div>
     </template>
-    <FLayoutLeftPanel>
+    <FLayoutLeftPanel initial-width="180">
       <template #heading><h3>Navigationstitel</h3></template>
       <template #content>[content]</template>
       <template #default>
@@ -622,14 +622,8 @@ function closePanel() { FLayoutRightPanelService.close() }
 <\/script>
 <style>
 html, body { height: 100%; margin: 0; }
-.layout-application-template { height: 100vh; }
-.layout-navigation__navigation { max-width: 3rem; top: auto; overflow: hidden; }
-.layout-navigation__navigation__inner { padding: 0.5rem; }
-.layout-navigation__navigation__inner--minimized { padding: 0.5rem; }
-.layout-navigation__navigation__inner__title h3 { display: none; }
-.layout-navigation__navigation__inner__content { display: none; }
+.layout-application-template { height: 100%; }
 .layout-secondary__secondary { max-width: 40%; }
-.layout-application-template__footer { margin-top: auto; }
 </style>`,
   FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
   FLayoutRightPanel: `<template>
