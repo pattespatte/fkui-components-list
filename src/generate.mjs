@@ -576,8 +576,8 @@ import { FLabel } from "@fkui/vue"
       <div style="background-color:lightgray"><a href="#">[toppnavigering]</a></div>
     </template>
     <FLayoutLeftPanel initial-width="180">
-      <template #heading><h3>Navigationstitel</h3></template>
-      <template #content>[content]</template>
+      <template #heading><h3>Meny</h3></template>
+      <template #content>[innehåll]</template>
       <template #default>
         <FLayoutRightPanel>
           <template #heading><h3>{{ selectedTitle }}</h3></template>
@@ -621,8 +621,11 @@ function openPanel(item) { selectedTitle.value = item.title; selectedText.value 
 function closePanel() { FLayoutRightPanelService.close() }
 <\/script>
 <style>
-html, body { height: 100%; margin: 0; }
-.layout-application-template { height: 100%; }
+html, body { height: 100%; margin: 0; overflow: hidden; }
+.layout-application-template { height: 100%; overflow: hidden; }
+.layout-application-template__main { overflow: auto; }
+.layout-navigation__navigation[aria-expanded="false"] { width: 2.5rem !important; }
+.layout-navigation__navigation[aria-expanded="false"] ~ #layout-navigation__primary { margin-left: 2.5rem !important; }
 .layout-secondary__secondary { max-width: 40%; }
 </style>`,
   FLayoutLeftPanel: simpleTemplate("FLayoutLeftPanel"),
