@@ -820,7 +820,12 @@ export default defineComponent({
   </div>
 </template>`,
   FOutputField: `<template>
-  <div style="padding:2rem;max-width:400px"><FOutputField>Exempelvärde</FOutputField></div>
+  <div style="padding:2rem;max-width:400px">
+    <FOutputField id="output-demo" for="input-demo">
+      <template #label>Summa</template>
+      Exempelvärde
+    </FOutputField>
+  </div>
 </template>
 <script setup>
 import { FOutputField } from "@fkui/vue"
