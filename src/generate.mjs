@@ -1055,11 +1055,28 @@ function remove(row) { items.value = items.value.filter(r => r.id !== row.id) }
 <\/script>`,
   FTableColumn: `<template>
   <div style="padding:2rem">
-    <FDataTable :rows="[{name:'Anna',age:30}]"><template #default><FTableColumn name="name" title="Namn" /><FTableColumn name="age" title="Ålder" type="numeric" /></template></FDataTable>
+    <FDataTable :rows="people" key-attribute="id">
+      <template #caption>Personer</template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumn title="Ålder" type="numeric" shrink>{{ row.age }}</FTableColumn>
+        <FTableColumn title="Stad" type="text">{{ row.city }}</FTableColumn>
+      </template>
+    </FDataTable>
   </div>
 </template>
 <script setup>
+import { onMounted, getCurrentInstance } from "vue"
 import { FDataTable, FTableColumn } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const people = [
+  { id:"1", name:"Anna", age:30, city:"Stockholm" },
+  { id:"2", name:"Erik", age:25, city:"Göteborg" },
+  { id:"3", name:"Sara", age:28, city:"Malmö" },
+]
 <\/script>`,
   FTextareaField: `<template>
   <div style="padding:2rem;max-width:400px"><FTextareaField v-model="v"><template #default>Text</template></FTextareaField></div>
