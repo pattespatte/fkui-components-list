@@ -905,13 +905,26 @@ import { FRadioField } from "@fkui/vue"
 const v = ref("a")
 <\/script>`,
   FResizePane: `<template>
-  <div style="padding:2rem">
-    <FResizePane min="100px" max="600px" initial="300px"><p>Storleksändringsbart panelinnehåll</p></FResizePane>
-  </div>
+  <f-page-layout layout="left-panel">
+    <template #default="{ left, content }">
+      <f-resize-pane :slot="left" min="100px" max="40%" initial="25%">
+        <div class="panel">
+          <p>Panel</p>
+        </div>
+      </f-resize-pane>
+      <div :slot="content" style="padding:2rem">
+        <h2>Huvudyta</h2>
+        <p>Drag i handtaget för att ändra storlek.</p>
+      </div>
+    </template>
+  </f-page-layout>
 </template>
 <script setup>
-import { FResizePane } from "@fkui/vue"
-<\/script>`,
+import { FResizePane, FPageLayout } from "@fkui/vue"
+<\/script>
+<style>
+.panel { padding:1rem; background:#e5e5f5; height:100%; border-right:2px solid #ccc; }
+</style>`,
   FSelectField: `<template>
   <div style="padding:2rem;max-width:400px">
     <FSelectField v-model="v"><template #default>Välj</template>
@@ -1006,20 +1019,49 @@ import { FTooltip } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
-  FValidationForm: `<template>
+  FValidationForm: `<script lang="ts">
+import { defineComponent } from "vue"
+import { FButton, FCheckboxField, FEmailTextField, FFieldset, FPhoneTextField, FRadioField, FValidationForm, ValidationPlugin } from "@fkui/vue"
+export default defineComponent({
+  components: { FButton, FCheckboxField, FEmailTextField, FFieldset, FRadioField, FPhoneTextField, FValidationForm },
+  data() {
+    return { phone: "", email: "", info: "", news: false, tips: false }
+  },
+  methods: {
+    onSubmit() { alert("Spara") },
+    onCancel() { alert("Avbryt") },
+  },
+})
+<\/script>
+<template>
   <div style="padding:2rem;max-width:400px">
-    <FValidationForm @submit="onSubmit">
-      <FTextField v-model="name"><template #default>Namn</template></FTextField>
-      <FButton type="submit" style="margin-top:1rem">Skicka</FButton>
-    </FValidationForm>
+    <f-validation-form @submit="onSubmit">
+      <template #error-message> Oj, du har glömt fylla i något. Gå till: </template>
+      <template #default>
+        <f-phone-text-field v-model="phone" v-validation.required>Telefonnummer</f-phone-text-field>
+        <f-email-text-field v-model="email" v-validation.required>E-postadress</f-email-text-field>
+        <f-fieldset v-validation.required name="info">
+          <template #label> Hur vill du få information? </template>
+          <template #default>
+            <f-radio-field v-model="info" value="mejl">Mejl</f-radio-field>
+            <f-radio-field v-model="info" value="sms">Sms</f-radio-field>
+          </template>
+        </f-fieldset>
+        <f-fieldset v-validation.required name="type">
+          <template #label> Vilken information? </template>
+          <template #default>
+            <f-checkbox-field v-model="news" :value="true">Nyheter</f-checkbox-field>
+            <f-checkbox-field v-model="tips" :value="true">Tips</f-checkbox-field>
+          </template>
+        </f-fieldset>
+        <div class="button-group">
+          <f-button class="button-group__item" size="large" type="submit">Spara</f-button>
+          <f-button class="button-group__item" size="large" variant="secondary" @click="onCancel">Avbryt</f-button>
+        </div>
+      </template>
+    </f-validation-form>
   </div>
-</template>
-<script setup>
-import { ref } from "vue"
-import { FValidationForm, FTextField, FButton } from "@fkui/vue"
-const name = ref("")
-function onSubmit() {}
-<\/script>`,
+</template>`,
   FValidationGroup: `<template>
   <div style="padding:2rem;max-width:400px">
     <FValidationGroup v-model="valid">
