@@ -1153,29 +1153,58 @@ function onCancel() { alert("Avbryt") }
   FValidationGroup: `<template>
   <div style="padding:2rem;max-width:400px">
     <FValidationGroup v-model="valid">
-      <FTextField v-model="name"><template #default>Namn</template></FTextField>
+      <FTextField id="frukt" v-model="frukt" v-validation.required maxlength="100">Favoritfrukt</FTextField>
+      <FTextField id="godis" v-model="godis" v-validation.required maxlength="100">Favoritgodis</FTextField>
     </FValidationGroup>
-    <p style="margin-top:1rem">Grupp giltig: {{ valid?.isValid ?? "?" }}</p>
+    <div class="button-group" style="margin-top:1rem">
+      <FButton :disabled="!valid?.isValid" @click="onSubmit">Spara</FButton>
+    </div>
+    <p style="margin-top:1rem">Grupp giltig: {{ valid?.isValid ?? "–" }}</p>
   </div>
 </template>
 <script setup>
-import { ref } from "vue"
-import { FValidationGroup, FTextField } from "@fkui/vue"
-const name = ref("")
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FButton, FTextField, FValidationGroup, ValidationPlugin } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const frukt = ref("")
+const godis = ref("")
 const valid = ref(null)
+function onSubmit() { alert("Spara") }
 <\/script>`,
   FWizard: `<template>
   <div style="padding:2rem">
-    <FWizard title="Guidat formulär" :steps="[{title:'Steg 1'},{title:'Steg 2'}]" />
+    <FWizard v-model="current" header-tag="h2" disable-initial-focus @completed="onCompleted">
+      <FWizardStep key="step1" :use-error-list="false" title="Steg 1">
+        <FTextField v-model="name" v-validation.required>Namn</FTextField>
+      </FWizardStep>
+      <FWizardStep key="step2" :use-error-list="false" title="Steg 2">
+        <FTextField v-model="city" v-validation.required>Stad</FTextField>
+      </FWizardStep>
+      <FWizardStep key="step3" :use-error-list="false" title="Klar">
+        <p>Allt är ifyllt!</p>
+        <template #next-button-text> Klar </template>
+      </FWizardStep>
+    </FWizard>
+    <p v-if="done" style="margin-top:1rem">Wizard slutförd</p>
   </div>
 </template>
 <script setup>
-import { onMounted, getCurrentInstance } from "vue"
-import { FWizard } from "@fkui/vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FWizard, FWizardStep, FTextField, ValidationPlugin } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
-const { appContext } = getCurrentInstance()
-appContext.config.globalProperties.$t = (key, fallback) => fallback
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
+const current = ref(undefined)
+const name = ref("")
+const city = ref("")
+const done = ref(false)
+function onCompleted() { done.value = true }
 <\/script>`,
 };
 
