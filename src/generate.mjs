@@ -984,14 +984,44 @@ import { FStaticField } from "@fkui/vue"
 <\/script>`,
   FTable: `<template>
   <div style="padding:2rem">
-    <FTable :columns="[{header:'Namn',key:'name'},{header:'Ålder',key:'age'}]" :rows="[{name:'Anna',age:30},{name:'Erik',age:25}]" key-attribute="name" />
+    <FSortFilterDataset :data="rows" :sortable-attributes="{ namn: 'Frukt' }">
+      <template #default="{ sortFilterResult }">
+        <FTable :rows="sortFilterResult" :columns striped key-attribute="namn">
+          <template #caption><span class="sr-only">Frukter</span></template>
+        </FTable>
+      </template>
+    </FSortFilterDataset>
   </div>
 </template>
 <script setup>
-import { getCurrentInstance } from "vue"
-import { FTable } from "@fkui/vue"
+import { onMounted, getCurrentInstance } from "vue"
+import { FTable, FSortFilterDataset, defineTableColumns, useDatasetRef } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const columns = defineTableColumns([
+  { type: "text", header: "Frukt", key: "namn" },
+  { type: "text", header: "Land", key: "land" },
+  { type: "text:currency", header: "Pris", key: "pris" },
+])
+const rows = useDatasetRef([
+  { namn:"Apelsin", land:"", sorter:[
+    { namn:"Navelina", land:"Spanien", pris:28.73 },
+    { namn:"Tarocco", land:"Italien", pris:35 },
+    { namn:"Valencia", land:"Sydafrika", pris:22 },
+  ]},
+  { namn:"Äpple", land:"", sorter:[
+    { namn:"Ingrid Marie", land:"Sverige", pris:29.9 },
+    { namn:"Royal Gala", land:"Italien", pris:24.95 },
+    { namn:"Pink Lady", land:"Italien", pris:42 },
+  ]},
+  { namn:"Banan", land:"", sorter:[
+    { namn:"Cavendish", land:"Ecuador", pris:21.9 },
+    { namn:"Fairtrade", land:"Colombia", pris:26 },
+    { namn:"Babybanan", land:"Ecuador", pris:45 },
+  ]},
+], "sorter")
 <\/script>`,
   FTableButton: `<template>
   <div style="padding:2rem">
