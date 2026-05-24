@@ -1025,11 +1025,33 @@ const rows = useDatasetRef([
 <\/script>`,
   FTableButton: `<template>
   <div style="padding:2rem">
-    <FTableButton label>Redigera</FTableButton>
+    <FInteractiveTable :rows="items" key-attribute="id">
+      <template #caption>Frukter</template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumn title="Land" type="text" shrink>{{ row.origin }}</FTableColumn>
+        <FTableColumn title="Åtgärd" type="action" shrink>
+          <FTableButton icon="pen" @click="edit(row)">Ändra</FTableButton>
+          <FTableButton icon="trashcan" @click="remove(row)">Ta bort</FTableButton>
+        </FTableColumn>
+      </template>
+    </FInteractiveTable>
   </div>
 </template>
 <script setup>
-import { FTableButton } from "@fkui/vue"
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FInteractiveTable, FTableColumn, FTableButton } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const items = ref([
+  { id:"1", name:"Äpple", origin:"Sverige" },
+  { id:"2", name:"Banan", origin:"Colombia" },
+  { id:"3", name:"Citron", origin:"Spanien" },
+])
+function edit(row) { const n = prompt("Namn:", row.name); if (n) row.name = n }
+function remove(row) { items.value = items.value.filter(r => r.id !== row.id) }
 <\/script>`,
   FTableColumn: `<template>
   <div style="padding:2rem">
