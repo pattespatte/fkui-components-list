@@ -1105,49 +1105,51 @@ import { FTooltip } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 onMounted(() => { iconLib.f.injectSpritesheet() })
 <\/script>`,
-  FValidationForm: `<script lang="ts">
-import { defineComponent } from "vue"
-import { FButton, FCheckboxField, FEmailTextField, FFieldset, FPhoneTextField, FRadioField, FValidationForm, ValidationPlugin } from "@fkui/vue"
-export default defineComponent({
-  components: { FButton, FCheckboxField, FEmailTextField, FFieldset, FRadioField, FPhoneTextField, FValidationForm },
-  data() {
-    return { phone: "", email: "", info: "", news: false, tips: false }
-  },
-  methods: {
-    onSubmit() { alert("Spara") },
-    onCancel() { alert("Avbryt") },
-  },
-})
-<\/script>
-<template>
+  FValidationForm: `<template>
   <div style="padding:2rem;max-width:400px">
-    <f-validation-form @submit="onSubmit">
+    <FValidationForm @submit="onSubmit">
       <template #error-message> Oj, du har glömt fylla i något. Gå till: </template>
       <template #default>
-        <f-phone-text-field v-model="phone" v-validation.required>Telefonnummer</f-phone-text-field>
-        <f-email-text-field v-model="email" v-validation.required>E-postadress</f-email-text-field>
-        <f-fieldset v-validation.required name="info">
+        <FPhoneTextField v-model="phone" v-validation.required>Telefonnummer</FPhoneTextField>
+        <FEmailTextField v-model="email" v-validation.required>E-postadress</FEmailTextField>
+        <FFieldset v-validation.required name="info">
           <template #label> Hur vill du få information? </template>
           <template #default>
-            <f-radio-field v-model="info" value="mejl">Mejl</f-radio-field>
-            <f-radio-field v-model="info" value="sms">Sms</f-radio-field>
+            <FRadioField v-model="info" value="mejl">Mejl</FRadioField>
+            <FRadioField v-model="info" value="sms">Sms</FRadioField>
           </template>
-        </f-fieldset>
-        <f-fieldset v-validation.required name="type">
+        </FFieldset>
+        <FFieldset v-validation.required name="type">
           <template #label> Vilken information? </template>
           <template #default>
-            <f-checkbox-field v-model="news" :value="true">Nyheter</f-checkbox-field>
-            <f-checkbox-field v-model="tips" :value="true">Tips</f-checkbox-field>
+            <FCheckboxField v-model="news" :value="true">Nyheter</FCheckboxField>
+            <FCheckboxField v-model="tips" :value="true">Tips</FCheckboxField>
           </template>
-        </f-fieldset>
+        </FFieldset>
         <div class="button-group">
-          <f-button class="button-group__item" size="large" type="submit">Spara</f-button>
-          <f-button class="button-group__item" size="large" variant="secondary" @click="onCancel">Avbryt</f-button>
+          <FButton class="button-group__item" size="large" type="submit">Spara</FButton>
+          <FButton class="button-group__item" size="large" variant="secondary" @click="onCancel">Avbryt</FButton>
         </div>
       </template>
-    </f-validation-form>
+    </FValidationForm>
   </div>
-</template>`,
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FButton, FCheckboxField, FEmailTextField, FFieldset, FPhoneTextField, FRadioField, FValidationForm, ValidationPlugin } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const phone = ref("")
+const email = ref("")
+const info = ref("")
+const news = ref(false)
+const tips = ref(false)
+function onSubmit() { alert("Spara") }
+function onCancel() { alert("Avbryt") }
+<\/script>`,
   FValidationGroup: `<template>
   <div style="padding:2rem;max-width:400px">
     <FValidationGroup v-model="valid">
