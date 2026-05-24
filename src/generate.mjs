@@ -927,9 +927,13 @@ import { FResizePane, FPageLayout } from "@fkui/vue"
 </style>`,
   FSelectField: `<template>
   <div style="padding:2rem;max-width:400px">
-    <FSelectField v-model="v"><template #default>Välj</template>
-      <option value="a">A</option><option value="b">B</option>
-    </FSelectField>
+    <f-select-field id="dropplista" v-model="v">
+      <template #label>Etikett rubrik</template>
+      <option disabled hidden value="">Välj…</option>
+      <option value="1">Alternativ 1</option>
+      <option value="2">Alternativ 2</option>
+      <option value="3">Alternativ 3</option>
+    </f-select-field>
   </div>
 </template>
 <script setup>
