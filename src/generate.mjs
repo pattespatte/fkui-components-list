@@ -945,21 +945,34 @@ const v = ref("")
 <\/script>`,
   FSortFilterDataset: `<template>
   <div style="padding:2rem">
-    <FSortFilterDataset :data="data" :sortable-attributes="['name']">
-      <template #default="{ data: items }">
-        <div v-for="item in items" :key="item.id">{{ item.name }}</div>
+    <FSortFilterDataset :data="fruits" default-sort-attribute="name" :default-sort-ascending="true" :sortable-attributes="sortableAttributes">
+      <template #default="{ sortFilterResult }">
+        <FInteractiveTable :rows="sortFilterResult" striped key-attribute="id">
+          <template #caption><span class="sr-only">Frukter</span></template>
+          <template #default="{ row }">
+            <FTableColumn name="name" title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+            <FTableColumn name="origin" title="Land" type="text" shrink>{{ row.origin }}</FTableColumn>
+          </template>
+        </FInteractiveTable>
       </template>
     </FSortFilterDataset>
   </div>
 </template>
 <script setup>
 import { ref, onMounted, getCurrentInstance } from "vue"
-import { FSortFilterDataset } from "@fkui/vue"
+import { FSortFilterDataset, FInteractiveTable, FTableColumn } from "@fkui/vue"
 import iconLib from "@fkui/icon-lib-default"
 const { appContext } = getCurrentInstance()
 appContext.config.globalProperties.$t = (key, fallback) => fallback
 onMounted(() => { iconLib.f.injectSpritesheet() })
-const data = ref([{ id:1, name:"Anna" },{ id:2, name:"Erik" },{ id:3, name:"Sara" }])
+const sortableAttributes = { name: "Namn", origin: "Land" }
+const fruits = ref([
+  { id:1, name:"Äpple", origin:"Sverige" },
+  { id:2, name:"Banan", origin:"Colombia" },
+  { id:3, name:"Citron", origin:"Spanien" },
+  { id:4, name:"Apelsin", origin:"Spanien" },
+  { id:5, name:"Vattenmelon", origin:"Spanien" },
+])
 <\/script>`,
   FStaticField: `<template>
   <div style="padding:2rem;max-width:400px">
