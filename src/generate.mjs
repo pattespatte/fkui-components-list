@@ -139,11 +139,11 @@ const TEMPLATES = {
 import { FBadge } from "@fkui/vue"
 <\/script>`,
   FButton: `<template>
-  <div style="padding:2rem;display:flex;gap:1rem;flex-wrap:wrap">
+  <div class="density-default" style="padding:2rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start">
     <FButton>Primär</FButton>
     <FButton variant="secondary">Sekundär</FButton>
     <FButton variant="tertiary">Tertiär</FButton>
-    <FButton size="small">Small</FButton>
+    <FButton size="small">Liten</FButton>
   </div>
 </template>
 <script setup>
@@ -1234,8 +1234,7 @@ function countInDir(dir) {
 function utoa(data) {
   const buffer = strToU8(data);
   const zipped = zlibSync(buffer, { level: 9 });
-  const binary = strFromU8(zipped, true);
-  return btoa(binary);
+  return btoa(String.fromCharCode(...zipped));
 }
 
 function makeUrl(template) {
