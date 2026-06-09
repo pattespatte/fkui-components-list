@@ -78,13 +78,55 @@ const VUE_TO_SCSS = {
   FTextField: "text-field",
   FTooltip: "tooltip",
   FValidationForm: null,
+  FValidationFormAction: null,
   FValidationGroup: "group",
   FWizard: "wizard",
+  FWizardStep: "wizard",
+  FWizardStepAction: null,
+  // TextField variants (all share text-field SCSS)
+  FBankAccountNumberTextField: "text-field",
+  FBankgiroTextField: "text-field",
+  FClearingnumberTextField: "text-field",
+  FCurrencyTextField: "text-field",
+  FEmailTextField: "text-field",
+  FNumericTextField: "text-field",
+  FOrganisationsnummerTextField: "text-field",
+  FPercentTextField: "text-field",
+  FPersonnummerTextField: "text-field",
+  FPhoneTextField: "text-field",
+  FPlusgiroTextField: "text-field",
+  FPostalCodeTextField: "text-field",
+  FSearchTextField: "text-field",
+  // Sub-components
+  FCalendarDay: "calendar-day",
+  FConfirmModal: null,
+  FCrudButton: null,
+  FFormModal: "modal",
+  FFormModalAction: null,
+  FSortFilterDatasetInjected: "sort-filter-dataset",
+  FTableColumnSize: "table",
+  FTableColumnSort: "table",
+  FTableColumnType: "table",
 };
 
 const JS_MEDIA_QUERY = { FDetailsPanel: 1, FMinimizablePanel: 1, FTooltip: 1 };
 
 const FKUI_GITHUB = "https://github.com/Forsakringskassan/designsystem/blob/e3bf77abe4fe99b433bc62d2f6118c0776fa5898/packages";
+
+// ─── TextField template helper ──────────────────────────────────────────────
+
+function textFieldTpl(name, label) {
+  return `<template>
+  <div style="padding:2rem;max-width:400px">
+    <${name} v-model="v"><template #default>${label}</template></${name}>
+  </div>
+</template>
+<script setup>
+import { ref } from "vue"
+import { ${name} } from "@fkui/vue"
+const v = ref("")
+<\/script>`;
+}
 
 // ─── SFC Templates ─────────────────────────────────────────────────────────
 
@@ -1203,6 +1245,295 @@ onMounted(() => { iconLib.f.injectSpritesheet() })
 const current = ref(undefined)
 const name = ref("")
 const city = ref("")
+const done = ref(false)
+function onCompleted() { done.value = true }
+<\/script>`,
+  // ── TextField variants ──
+  FBankAccountNumberTextField: textFieldTpl("FBankAccountNumberTextField", "Bankkontonummer"),
+  FBankgiroTextField: textFieldTpl("FBankgiroTextField", "Bankgironummer"),
+  FClearingnumberTextField: textFieldTpl("FClearingnumberTextField", "Clearingnummer"),
+  FCurrencyTextField: textFieldTpl("FCurrencyTextField", "Belopp"),
+  FEmailTextField: textFieldTpl("FEmailTextField", "E-postadress"),
+  FNumericTextField: textFieldTpl("FNumericTextField", "Nummer"),
+  FOrganisationsnummerTextField: textFieldTpl("FOrganisationsnummerTextField", "Organisationsnummer"),
+  FPercentTextField: textFieldTpl("FPercentTextField", "Procent"),
+  FPersonnummerTextField: textFieldTpl("FPersonnummerTextField", "Personnummer"),
+  FPhoneTextField: textFieldTpl("FPhoneTextField", "Telefonnummer"),
+  FPlusgiroTextField: textFieldTpl("FPlusgiroTextField", "Plusgironummer"),
+  FPostalCodeTextField: textFieldTpl("FPostalCodeTextField", "Postnummer"),
+  FSearchTextField: textFieldTpl("FSearchTextField", "Sök"),
+  // ── Sub-components ──
+  FCalendarDay: `<template>
+  <div style="padding:2rem">
+    <FCalendar v-model="date" :min-date="minDate" :max-date="maxDate">
+      <template #default="{ date: day }">
+        <FCalendarDay :day="day" />
+      </template>
+    </FCalendar>
+  </div>
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FCalendar, FCalendarDay } from "@fkui/vue"
+import { FDate } from "@fkui/date"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const date = ref(FDate.fromIso("2027-01-15"))
+const minDate = ref(FDate.fromIso("2027-01-01"))
+const maxDate = ref(FDate.fromIso("2027-12-31"))
+<\/script>`,
+  FConfirmModal: `<template>
+  <div style="padding:2rem">
+    <FButton @click="doConfirm">Öppna bekräftelsedialog</FButton>
+  </div>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FButton, useModal } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const { confirmModal } = useModal()
+async function doConfirm() {
+  const confirmed = await confirmModal({ heading: "Bekräfta", content: "Är du säker?", confirm: "Ja", dismiss: "Nej" })
+  alert(confirmed ? "Bekräftat" : "Avbrutet")
+}
+<\/script>`,
+  FCrudButton: `<template>
+  <div style="padding:2rem">
+    <FCrudButton icon="pen" @click="edit">Redigera</FCrudButton>
+  </div>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FCrudButton } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+function edit() { alert("Redigera") }
+<\/script>`,
+  FFormModal: `<template>
+  <div style="padding:2rem">
+    <FButton @click="open=true">Öppna formulärmodal</FButton>
+    <FFormModal :is-open="open" @close="open=false">
+      <template #header>Formulär</template>
+      <template #content>
+        <FTextField v-model="val">Värde</FTextField>
+      </template>
+    </FFormModal>
+  </div>
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FButton, FFormModal, FTextField } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const open = ref(false)
+const val = ref("")
+<\/script>`,
+  FFormModalAction: `<template>
+  <div style="padding:2rem">
+    <FButton @click="open=true">Öppna modal</FButton>
+    <FFormModal :is-open="open" @close="open=false">
+      <template #header>Formulär med åtgärd</template>
+      <template #content>
+        <FTextField v-model="val">Namn</FTextField>
+      </template>
+      <template #footer>
+        <FFormModalAction>
+          <FButton type="submit">Spara</FButton>
+          <FButton variant="secondary" @click="open=false">Avbryt</FButton>
+        </FFormModalAction>
+      </template>
+    </FFormModal>
+  </div>
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FButton, FFormModal, FFormModalAction, FTextField } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const open = ref(false)
+const val = ref("")
+<\/script>`,
+  FSortFilterDatasetInjected: `<template>
+  <div style="padding:2rem">
+    <FSortFilterDatasetInjected :data="fruits" default-sort-attribute="name" :default-sort-ascending="true" :sortable-attributes="{ name: 'Namn' }">
+      <template #default="{ sortFilterResult }">
+        <FList :items="sortFilterResult" key-attribute="id">
+          <template #default="{ item }">{{ item.name }}</template>
+        </FList>
+      </template>
+    </FSortFilterDatasetInjected>
+  </div>
+</template>
+<script setup>
+import { ref, getCurrentInstance } from "vue"
+import { FSortFilterDatasetInjected, FList } from "@fkui/vue"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+const fruits = ref([
+  { id: 1, name: "Äpple" },
+  { id: 2, name: "Banan" },
+  { id: 3, name: "Citron" },
+])
+<\/script>`,
+  FTableColumnSize: `<template>
+  <div style="padding:2rem">
+    <FDataTable :rows="people" key-attribute="id">
+      <template #caption>Personer</template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumn title="Ålder" type="numeric">{{ row.age }}</FTableColumn>
+        <FTableColumnSize size="large" title="Stor kolumn" type="text">{{ row.city }}</FTableColumnSize>
+      </template>
+    </FDataTable>
+  </div>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FDataTable, FTableColumn, FTableColumnSize } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const people = [
+  { id: "1", name: "Anna", age: 30, city: "Stockholm" },
+  { id: "2", name: "Erik", age: 25, city: "Göteborg" },
+]
+<\/script>`,
+  FTableColumnSort: `<template>
+  <div style="padding:2rem">
+    <FDataTable :rows="people" key-attribute="id">
+      <template #caption>Personer</template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumnSort sort-key="age" title="Ålder" type="numeric">{{ row.age }}</FTableColumnSort>
+      </template>
+    </FDataTable>
+  </div>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FDataTable, FTableColumn, FTableColumnSort } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const people = [
+  { id: "1", name: "Anna", age: 30 },
+  { id: "2", name: "Erik", age: 25 },
+]
+<\/script>`,
+  FTableColumnType: `<template>
+  <div style="padding:2rem">
+    <FDataTable :rows="people" key-attribute="id">
+      <template #caption>Personer</template>
+      <template #default="{ row }">
+        <FTableColumn title="Namn" type="text" shrink>{{ row.name }}</FTableColumn>
+        <FTableColumnType title="Roll" type="text">{{ row.role }}</FTableColumnType>
+      </template>
+    </FDataTable>
+  </div>
+</template>
+<script setup>
+import { onMounted, getCurrentInstance } from "vue"
+import { FDataTable, FTableColumn, FTableColumnType } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const { appContext } = getCurrentInstance()
+appContext.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const people = [
+  { id: "1", name: "Anna", role: "Admin" },
+  { id: "2", name: "Erik", role: "Användare" },
+]
+<\/script>`,
+  FValidationFormAction: `<template>
+  <div style="padding:2rem;max-width:400px">
+    <FValidationForm @submit="onSubmit">
+      <template #default>
+        <FTextField v-model="name" v-validation.required>Namn</FTextField>
+        <FValidationFormAction>
+          <FButton type="submit">Spara</FButton>
+          <FButton variant="secondary" @click="onCancel">Avbryt</FButton>
+        </FValidationFormAction>
+      </template>
+    </FValidationForm>
+  </div>
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FButton, FTextField, FValidationForm, FValidationFormAction, ValidationPlugin } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const name = ref("")
+function onSubmit() { alert("Spara") }
+function onCancel() { alert("Avbryt") }
+<\/script>`,
+  FWizardStep: `<template>
+  <div style="padding:2rem">
+    <FWizard v-model="current" header-tag="h2" disable-initial-focus @completed="onCompleted">
+      <FWizardStep key="step1" :use-error-list="false" title="Steg 1">
+        <FTextField v-model="val" v-validation.required>Värde</FTextField>
+      </FWizardStep>
+      <FWizardStep key="step2" :use-error-list="false" title="Klar">
+        <p>Klart!</p>
+        <template #next-button-text>Klar</template>
+      </FWizardStep>
+    </FWizard>
+  </div>
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FWizard, FWizardStep, FTextField, ValidationPlugin } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const current = ref(undefined)
+const val = ref("")
+const done = ref(false)
+function onCompleted() { done.value = true }
+<\/script>`,
+  FWizardStepAction: `<template>
+  <div style="padding:2rem">
+    <FWizard v-model="current" header-tag="h2" disable-initial-focus @completed="onCompleted">
+      <FWizardStep key="step1" :use-error-list="false" title="Steg 1">
+        <FTextField v-model="val" v-validation.required>Värde</FTextField>
+        <template #actions>
+          <FWizardStepAction>
+            <FButton variant="tertiary">Extra åtgärd</FButton>
+          </FWizardStepAction>
+        </template>
+      </FWizardStep>
+      <FWizardStep key="step2" :use-error-list="false" title="Klar">
+        <p>Klart!</p>
+      </FWizardStep>
+    </FWizard>
+  </div>
+</template>
+<script setup>
+import { ref, onMounted, getCurrentInstance } from "vue"
+import { FWizard, FWizardStep, FWizardStepAction, FButton, FTextField, ValidationPlugin } from "@fkui/vue"
+import iconLib from "@fkui/icon-lib-default"
+const app = getCurrentInstance().appContext.app
+app.use(ValidationPlugin)
+app.config.globalProperties.$t = (key, fallback) => fallback
+onMounted(() => { iconLib.f.injectSpritesheet() })
+const current = ref(undefined)
+const val = ref("")
 const done = ref(false)
 function onCompleted() { done.value = true }
 <\/script>`,

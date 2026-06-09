@@ -1,6 +1,6 @@
 # FKUI Components List
 
-Generates an HTML page listing all FKUI (Försäkringskassan design system) components with breakpoint counts and Vue Playground links.
+Generates an HTML page listing all [FKUI](https://github.com/Forsakringskassan/designsystem) ([Försäkringskassan design system](https://designsystem.forsakringskassan.se/latest/)) components with breakpoint counts and Vue Playground links.
 
 ## Quick Start
 
